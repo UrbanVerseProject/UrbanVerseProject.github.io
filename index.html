@@ -1545,6 +1545,55 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
+    // Progressive, section-ordered hydration for non-critical videos (no load() to avoid flashes)
+    const sectionOrder = ['abstract', 'real-to-sim', 'dataset', 'craftbench', 'city-tour-collection', 'scene-distillation', 'real-world-results'];
+    const isThumb = (el) => el.classList && (
+      el.classList.contains('thumbnail-video') ||
+      el.classList.contains('scene-thumbnail-video') ||
+      el.classList.contains('go2-scene-thumbnail-video') ||
+      el.classList.contains('distillation-thumbnail-video')
+    );
+    const isCritical = (el) => el.id === 'overview-video' || el.classList.contains('hero-video-el');
+
+    const videosInOrder = [];
+    sectionOrder.forEach(sectionId => {
+      const sectionEl = document.getElementById(sectionId);
+      if (!sectionEl) return;
+      sectionEl.querySelectorAll('video').forEach(v => {
+        if (isThumb(v) || isCritical(v)) return; // skip thumbnails and critical videos
+        videosInOrder.push(v);
+      });
+    });
+
+    let queueIndex = 0;
+    const maxParallel = 2;
+    function hydrateBatch(deadline) {
+      let started = 0;
+      while (queueIndex < videosInOrder.length && started < maxParallel && (!deadline || deadline.timeRemaining() > 8)) {
+        const v = videosInOrder[queueIndex++];
+        if (v.dataset._priorityHydrated === '1') continue;
+        if (v.preload === 'none' || !v.preload) {
+          v.preload = 'metadata';
+        }
+        v.dataset._priorityHydrated = '1';
+        started++;
+      }
+      if (queueIndex < videosInOrder.length) {
+        if (window.requestIdleCallback) {
+          requestIdleCallback(hydrateBatch, { timeout: 1000 });
+        } else {
+          setTimeout(hydrateBatch, 200);
+        }
+      }
+    }
+    if (videosInOrder.length) {
+      if (window.requestIdleCallback) {
+        requestIdleCallback(hydrateBatch, { timeout: 1000 });
+      } else {
+        setTimeout(hydrateBatch, 200);
+      }
+    }
+
     // Optimize video switching for better performance
     const cityVideos = document.querySelectorAll('.city-video');
     const distillationVideos = document.querySelectorAll('.distillation-video');
