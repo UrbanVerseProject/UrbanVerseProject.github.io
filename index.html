@@ -353,7 +353,7 @@
     <div class="columns is-centered">
       <div class="column is-full">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
-          <video autoplay muted loop playsinline controls controlslist="nodownload" oncontextmenu="return false;"
+          <video id="overview-video" autoplay muted loop playsinline controls controlslist="nodownload" oncontextmenu="return false;"
                  preload="metadata" loading="eager" fetchpriority="high"
                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; pointer-events: auto;"
                  draggable="false">
@@ -1523,6 +1523,21 @@ document.addEventListener('DOMContentLoaded', function() {
       optimizeVideoSwitching(distillationVideos, sceneIndex);
       if (originalShowDistillationScene) originalShowDistillationScene(sceneName);
     };
+
+    // Ensure overview video autoplay when visible (some browsers throttle second autoplay)
+    const overviewVideo = document.getElementById('overview-video');
+    if (overviewVideo) {
+      const playWhenVisible = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            overviewVideo.play().catch(() => {});
+          } else {
+            overviewVideo.pause();
+          }
+        });
+      }, { root: null, threshold: 0.25 });
+      playWhenVisible.observe(overviewVideo);
+    }
   });
 </script>
 
