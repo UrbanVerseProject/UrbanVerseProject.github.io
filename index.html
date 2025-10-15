@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="description" content="UrbanVerse">
@@ -7,325 +7,148 @@
   <title>UrbanVerse</title>
   <link rel="icon" href="./static/urbanverse_images/urbanverse_logo_0.png" type="image/png">
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
+  <!-- CSS -->
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- JS (defer where possible) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
-  <link rel="preload" as="video" href="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4" crossorigin fetchpriority="high">
-  <link rel="preload" as="video" href="./static/urbanverse_videos/long_teaser_v9.mp4" type="video/mp4" fetchpriority="high">
-  
+  <script defer src="./static/js/bulma-carousel.min.js"></script>
+  <script defer src="./static/js/bulma-slider.min.js"></script>
+  <script defer src="./static/js/index.js"></script>
+
+  <!-- Preload: hero video (highest priority) -->
+  <link rel="preload" as="video" href="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4" crossorigin>
+  <link rel="preload" as="video" href="./static/urbanverse_videos/long_teaser_v9.mp4" type="video/mp4">
+
   <style>
-    body {
-      background-color: #fdfaf4 !important;
-      font-family: 'Playfair Display', serif !important;
-    }
-    
-    .section {
-      background-color: #fdfaf4 !important;
-    }
-    
-    * {
-      font-family: 'Playfair Display', serif !important;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Roboto Mono', monospace !important;
-    }
-    
-    p, a, span, div, button, input, textarea, label {
-      font-family: 'Playfair Display', serif !important;
-    }
-    
-    .title, .subtitle {
-      font-family: 'Roboto Mono', monospace !important;
-    }
-    
-    .section .title, .section h2.title {
-      font-family: 'Roboto Mono', monospace !important;
-    }
-    
-    /* Video titles styling */
-    .video-title {
-      font-family: 'Roboto Mono', monospace !important;
-    }
-    
-    /* Video protection styles */
+    body { background-color: #fdfaf4 !important; font-family: 'Playfair Display', serif !important; padding-top: 0; }
+    body.toc-visible { padding-top: 70px; }
+
+    .section { background-color: #fdfaf4 !important; }
+    * { font-family: 'Playfair Display', serif !important; }
+    h1, h2, h3, h4, h5, h6, .title, .subtitle { font-family: 'Roboto Mono', monospace !important; }
+
+    .video-title { font-family: 'Roboto Mono', monospace !important; }
+
     video {
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      -webkit-touch-callout: none;
-      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+      -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
+      display: block;
     }
-    
-    /* Disable text selection on video containers */
-    .video-container {
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-    
-    /* Fixed Table of Contents Navigation */
+    .video-container { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+    /* Fixed TOC */
     .fixed-toc-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      padding: 5px 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.1); z-index: 1000; padding: 5px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transform: translateY(-100%); transition: transform 0.3s ease;
     }
-    
-    .container-full {
-      width: 100%;
-      max-width: none;
-      margin: 0;
-      padding: 0 20px;
-    }
-    
-    /* Add top padding only when TOC is visible */
-    body {
-      padding-top: 0;
-    }
-    body.toc-visible {
-      padding-top: 70px;
-    }
-    
-    /* Initially hide nav */
-    .fixed-toc-nav {
-      transform: translateY(-100%);
-      transition: transform 0.3s ease;
-    }
-    
-    /* Show nav when scrolled past hero */
-    .fixed-toc-nav.show {
-      transform: translateY(0);
-    }
-    
-    /* Table of Contents Horizontal Navigation */
-    .toc-buttons-wide {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: stretch;
-      gap: 8px;
-      width: 100%;
-      overflow-x: auto;
-      padding: 2px 0;
-    }
-    
-    .toc-btn {
-      background-color: transparent !important;
-      border: 1px solid #363636 !important;
-      color: #363636 !important;
-      font-family: 'Roboto Mono', monospace !important;
-      font-size: 0.75rem !important;
-      padding: 6px 12px !important;
-      border-radius: 4px !important;
+    .fixed-toc-nav.show { transform: translateY(0); }
+    .container-full { width: 100%; max-width: none; margin: 0; padding: 0 20px; }
+
+    .toc-buttons-wide { display: flex; flex-wrap: nowrap; justify-content: stretch; gap: 8px; width: 100%; overflow-x: auto; padding: 2px 0; }
+    .toc-btn, .toc-logo {
+      background-color: transparent !important; border: 1px solid #363636 !important; color: #363636 !important;
+      font-family: 'Roboto Mono', monospace !important; font-size: 0.75rem !important;
+      padding: 6px 12px !important; border-radius: 4px !important; white-space: nowrap !important; text-decoration: none !important; flex: 1; text-align: center;
       transition: all 0.2s ease !important;
-      white-space: nowrap !important;
-      text-decoration: none !important;
-      flex: 1;
-      text-align: center;
     }
-    
-    .toc-btn:hover {
-      background-color: black !important;
-      border-color: black !important;
-      color: white !important;
-      transform: translateY(-1px) !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    .toc-logo { border-color: transparent !important; font-weight: bold !important; }
+    .toc-btn:hover, .toc-logo:hover { background-color: black !important; border-color: black !important; color: white !important; transform: translateY(-1px) !important; box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important; }
+    .toc-btn.active { background-color: black !important; border-color: black !important; color: white !important; }
+
+    /* Hero */
+    .hero.is-fullheight.video { overflow: hidden; position: relative; }
+    .hero .hero-video-wrap {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%); width: 101%; height: 101%;
     }
-    
-    .toc-btn:focus {
-      box-shadow: 0 0 0 2px rgba(54, 54, 54, 0.3) !important;
-    }
-    
-    .toc-btn.active {
-      background-color: black !important;
-      border-color: black !important;
-      color: white !important;
-    }
-    
-    .toc-logo {
-      background-color: transparent !important;
-      border: 1px solid transparent !important;
-      color: black !important;
-      font-family: 'Roboto Mono', monospace !important;
-      font-size: 0.75rem !important;
-      font-weight: bold !important;
-      padding: 6px 12px !important;
-      border-radius: 4px !important;
-      transition: all 0.2s ease !important;
-      white-space: nowrap !important;
-      text-decoration: none !important;
-      flex: 1;
-      text-align: center;
-    }
-    
-    .toc-logo:hover {
-      background-color: black !important;
-      border-color: black !important;
-      color: white !important;
-      transform: translateY(-1px) !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-    }
-    
-    .toc-logo:focus {
-      box-shadow: none !important;
-    }
-    
-    /* Responsive adjustments */
+    .hero .hero-video-wrap video { width: 100%; height: 100%; object-fit: cover; }
+
     @media (max-width: 768px) {
-      body.toc-visible {
-        padding-top: 60px;
-      }
-      
-      .fixed-toc-nav {
-        padding: 4px 0;
-      }
-      
-      .toc-buttons-wide {
-        gap: 6px;
-        padding: 1px 0;
-      }
-      
-      .toc-btn, .toc-logo {
-        font-size: 0.7rem !important;
-        padding: 5px 10px !important;
-      }
+      body.toc-visible { padding-top: 60px; }
+      .fixed-toc-nav { padding: 4px 0; }
+      .toc-buttons-wide { gap: 6px; padding: 1px 0; }
+      .toc-btn, .toc-logo { font-size: 0.7rem !important; padding: 5px 10px !important; }
+
+      .title.is-1 { font-size: 3rem !important; }
+      .subtitle.is-1 { font-size: 2rem !important; }
+      .hero-body > div { bottom: 30px !important; left: 30px !important; right: 30px !important; max-width: none !important; min-width: auto !important; padding: 15px 20px !important; }
     }
-    
     @media (max-width: 480px) {
-      body.toc-visible {
-        padding-top: 70px;
-      }
-      
-      .fixed-toc-nav {
-        padding: 3px 0;
-      }
-      
-      .toc-buttons-wide {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 6px;
-      }
-      
-      .toc-btn, .toc-logo {
-        font-size: 0.65rem !important;
-        padding: 4px 8px !important;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .title.is-1 {
-        font-size: 3rem !important;
-      }
-      .subtitle.is-1 {
-        font-size: 2rem !important;
-      }
-      .hero-body > div {
-        bottom: 30px !important;
-        left: 30px !important;
-        right: 30px !important;
-        max-width: none !important;
-        min-width: auto !important;
-        padding: 15px 20px !important;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .title.is-1 {
-        font-size: 2.2rem !important;
-      }
-      .subtitle.is-1 {
-        font-size: 1.5rem !important;
-      }
-      .hero-body > div {
-        bottom: 20px !important;
-        left: 20px !important;
-        right: 20px !important;
-        padding: 12px 16px !important;
-      }
-      .hero-body p {
-        font-size: 1rem !important;
-      }
+      body.toc-visible { padding-top: 70px; }
+      .fixed-toc-nav { padding: 3px 0; }
+      .toc-buttons-wide { flex-wrap: wrap; justify-content: center; gap: 6px; }
+      .toc-btn, .toc-logo { font-size: 0.65rem !important; padding: 4px 8px !important; }
+
+      .title.is-1 { font-size: 2.2rem !important; }
+      .subtitle.is-1 { font-size: 1.5rem !important; }
+      .hero-body > div { bottom: 20px !important; left: 20px !important; right: 20px !important; padding: 12px 16px !important; }
+      .hero-body p { font-size: 1rem !important; }
     }
   </style>
 </head>
 
 <body>
 
-  <section class="hero is-link is-fullheight video" id="hero" style="overflow: hidden; position:relative;">
-    <div class="hero-video" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 101%; height: 101%;">
-      <video playsinline autoplay muted loop preload="auto" loading="eager" fetchpriority="high" style="width: 100%; height: 100%; object-fit: cover;">
-        <source src="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4" fetchpriority="high">
-      </video>
-    </div>
-    <div class="hero-video is-hidden-tablet is-inline-block-mobile"
-      style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 101%; height: 101%;">
-      <video playsinline autoplay muted loop preload="auto" loading="eager" fetchpriority="high" style="width: 100%; height: 100%; object-fit: cover;">
+  <!-- HERO (single video instance; desktop+mobile via CSS) -->
+  <section class="hero is-link is-fullheight video" id="hero">
+    <div class="hero-video-wrap">
+      <video id="hero-video" playsinline autoplay muted loop preload="auto" loading="eager" style="width:100%;height:100%;object-fit:cover;">
         <source src="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4" fetchpriority="high">
       </video>
     </div>
     <div class="overlay"></div>
 
-  <div class="hero-body">
-    <div style="position: absolute; bottom: 60px; left: 60px; background-color: rgba(0, 0, 0, 0.4); padding: 15px 25px; border-radius: 12px; backdrop-filter: blur(10px); max-width: 1200px; min-width: 750px;">
-      <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 4rem; color: white; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 4px 4px 16px rgba(0, 0, 0, 0.6), 0px 0px 20px rgba(0, 0, 0, 0.4); margin-bottom: 1rem; text-align: left;">
-        UrbanVerse
-      </h1>
-      <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 1.8rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); margin-bottom: 0.8rem; text-align: left;">
-        Scaling Urban Simulation by Watching City-Tour Videos
-      </h1>
-      <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 1.2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); margin-bottom: 0.5rem; text-align: left;">
-        <a href="https://oatmealliu.github.io/" target="_blank" style="color: white; text-decoration: none; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Mingxuan Liu</a><sup>1,2,*</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="https://dhlinv.github.io/" target="_blank" style="color: white; text-decoration: none; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Honglin He</a><sup>1,*</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="https://scholar.google.com/citations?user=xf1T870AAAAJ&hl=en" target="_blank" style="color: white; text-decoration: none; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Elisa Ricci</a><sup>2,3</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="https://wywu.github.io/" target="_blank" style="color: white; text-decoration: none; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Wayne Wu</a><sup>1</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="https://boleizhou.github.io/" target="_blank" style="color: white; text-decoration: none; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Bolei Zhou</a><sup>1</sup>
-      </h1>
-       <!-- Institutions -->
-       <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 1.2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); margin-bottom: 0.8rem; text-align: left;">
-         <sup>1</sup>University of California, Los Angeles &nbsp;&nbsp;&nbsp; <sup>2</sup>University of Trento &nbsp;&nbsp;&nbsp; <sup>3</sup>Fondazione Bruno Kessler
-       </h1>
-       
-       <!-- Contact and Equal Contribution -->
-       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
-         <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 1.1rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); margin: 0; text-align: left; color: white; font-family: 'Roboto Mono', monospace !important;">
-           Correspondence: mingxuan.liu@unitn.it
-         </h1>
-         <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 1.1rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); margin: 0; text-align: right; color: white; font-family: 'Roboto Mono', monospace !important;">
-           (*: equal contribution)
-         </h1>
-       </div>
-       
-       <!-- Links Section -->
-       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; width: 100%;">
-         <a href="" target="_blank" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important; padding: 8px 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; flex: 0.8; text-align: left;" onmouseover="this.style.borderBottomColor='white'; this.style.textDecoration='underline';" onmouseout="this.style.borderBottomColor='transparent'; this.style.textDecoration='none';">[Paper]</a>
-         <a href="" target="_blank" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important; padding: 8px 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; flex: 1.4; text-align: center;" onmouseover="this.style.borderBottomColor='white'; this.style.textDecoration='underline';" onmouseout="this.style.borderBottomColor='transparent'; this.style.textDecoration='none';">[UrbanVerse-100K] (coming soon)</a>
-         <a href="" target="_blank" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important; padding: 8px 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; flex: 0.8; text-align: right;" onmouseover="this.style.borderBottomColor='white'; this.style.textDecoration='underline';" onmouseout="this.style.borderBottomColor='transparent'; this.style.textDecoration='none';">[Code] (coming soon)</a>
-       </div>
+    <div class="hero-body">
+      <div style="position: absolute; bottom: 60px; left: 60px; background-color: rgba(0, 0, 0, 0.4); padding: 15px 25px; border-radius: 12px; backdrop-filter: blur(10px); max-width: 1200px; min-width: 750px;">
+        <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 4rem; color: white; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 4px 4px 16px rgba(0, 0, 0, 0.6), 0px 0px 20px rgba(0, 0, 0, 0.4); margin-bottom: 1rem; text-align: left;">UrbanVerse</h1>
+        <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 1.8rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 0.8rem; text-align: left;">Scaling Urban Simulation by Watching City-Tour Videos</h1>
+        <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 1.2rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 0.5rem; text-align: left;">
+          <a href="https://oatmealliu.github.io/" target="_blank" style="color: white; text-decoration: none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Mingxuan Liu</a><sup>1,2,*</sup>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://dhlinv.github.io/" target="_blank" style="color: white; text-decoration: none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Honglin He</a><sup>1,*</sup>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://scholar.google.com/citations?user=xf1T870AAAAJ&hl=en" target="_blank" style="color: white; text-decoration: none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Elisa Ricci</a><sup>2,3</sup>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://wywu.github.io/" target="_blank" style="color: white; text-decoration: none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Wayne Wu</a><sup>1</sup>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://boleizhou.github.io/" target="_blank" style="color: white; text-decoration: none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Bolei Zhou</a><sup>1</sup>
+        </h1>
+
+        <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 1.2rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 0.8rem; text-align: left;">
+          <sup>1</sup>University of California, Los Angeles &nbsp;&nbsp;&nbsp; <sup>2</sup>University of Trento &nbsp;&nbsp;&nbsp; <sup>3</sup>Fondazione Bruno Kessler
+        </h1>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+          <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 1.1rem; margin: 0; text-align: left; color: white;">Correspondence: mingxuan.liu@unitn.it</h1>
+          <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 1.1rem; margin: 0; text-align: right; color: white;">(*: equal contribution)</h1>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; width: 100%;">
+          <a href="" target="_blank" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; padding: 8px 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; flex: 0.8; text-align: left;" onmouseover="this.style.borderBottomColor='white'; this.style.textDecoration='underline';" onmouseout="this.style.borderBottomColor='transparent'; this.style.textDecoration='none';">[Paper]</a>
+          <a href="" target="_blank" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; padding: 8px 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; flex: 1.4; text-align: center;" onmouseover="this.style.borderBottomColor='white'; this.style.textDecoration='underline';" onmouseout="this.style.borderBottomColor='transparent'; this.style.textDecoration='none';">[UrbanVerse-100K] (coming soon)</a>
+          <a href="" target="_blank" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; padding: 8px 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; flex: 0.8; text-align: right;" onmouseover="this.style.borderBottomColor='white'; this.style.textDecoration='underline';" onmouseout="this.style.borderBottomColor='transparent'; this.style.textDecoration='none';">[Code] (coming soon)</a>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-</section>
-
-<!-- Fixed Table of Contents Navigation -->
-<div class="fixed-toc-nav">
-  <div class="container-full">
-    <div class="toc-buttons-wide">
+  <!-- Fixed Table of Contents Navigation -->
+  <div class="fixed-toc-nav">
+    <div class="container-full">
+      <div class="toc-buttons-wide">
         <a href="#hero" class="button toc-logo">UrbanVerse</a>
         <a href="#abstract" class="button toc-btn">Overview</a>
         <a href="#real-to-sim" class="button toc-btn">Real-to-sim Generation</a>
@@ -337,1268 +160,895 @@
       </div>
     </div>
   </div>
-</div>
 
-<!-- Miu: Show Abstract Overview Text and Overview Video Demo -->
-<section class="section" id="abstract">
-  <div class="container">
-    <div class="has-text-centered" style="margin-bottom: 3rem;">
-      <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Overview (unmute for the best audio experience).</h2>
-    </div>
-
-    <div class="has-text-centered" style="margin-bottom: 2rem;">
-      <p style="font-size: 1.2rem; color: #333; max-width: 1400px; margin: 0 auto;">Introducing <strong>UrbanVerse</strong> — a system that converts real-world urban scenes from city-tour videos into physics-aware, interactive simulation environments</p>
-      <p style="font-size: 1.2rem; color: #333; max-width: 1400px; margin: 0 auto;">enabling scalable robot learning in urban spaces with real-world generalization.</p>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
-          <video id="overview-video" autoplay muted loop playsinline controls controlslist="nodownload" oncontextmenu="return false;"
-                 preload="metadata" loading="eager" fetchpriority="high"
-                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; pointer-events: auto;"
-                 draggable="false">
-            <source src="./static/urbanverse_videos/long_teaser_v9.mp4" type="video/mp4">
-          </video>
-        </div>
+  <!-- Overview -->
+  <section class="section" id="abstract">
+    <div class="container">
+      <div class="has-text-centered" style="margin-bottom: 3rem;">
+        <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Overview (unmute for the best audio experience).</h2>
       </div>
-    </div>
-  </div>
-</section>
 
-
-
-
-<script>
-  function showDistillationScene(scene) {
-    // Hide all videos
-    const videos = document.querySelectorAll('.distillation-video');
-    videos.forEach(video => {
-      video.style.display = 'none';
-      video.pause();
-    });
-    
-    // Show selected video
-    const selectedVideo = document.getElementById(scene + '-video');
-    if (selectedVideo) {
-      selectedVideo.style.display = 'block';
-      selectedVideo.play();
-    }
-    
-    // Update thumbnail gallery
-    updateDistillationThumbnailGallery(scene);
-    
-    // Update button colors
-    updateDistillationButtonColors(scene);
-  }
-  
-  function updateDistillationThumbnailGallery(selectedScene) {
-    const indicatorBar = document.getElementById('distillation-indicator-bar');
-    const scenePositions = {
-      'rek': '0%',
-      'sorrento': '33.33%',
-      'rek2': '66.66%'
-    };
-    indicatorBar.style.left = `calc(15px + ${scenePositions[selectedScene]})`;
-    
-    // Update thumbnail borders
-    const thumbnails = document.querySelectorAll('.distillation-thumbnail-container');
-    thumbnails.forEach(container => {
-      const video = container.querySelector('.distillation-thumbnail-video');
-      const label = container.querySelector('div:last-child');
-      
-      if (container.onclick.toString().includes(selectedScene)) {
-        video.style.border = '2px solid #363636';
-        label.style.color = '#363636';
-        label.style.fontWeight = 'bold';
-      } else {
-        video.style.border = '2px solid transparent';
-        label.style.color = '#666';
-        label.style.fontWeight = 'normal';
-      }
-    });
-  }
-  
-  function updateDistillationButtonColors(selectedScene) {
-    const buttons = document.querySelectorAll('.distillation-btn');
-    const sceneButtonMap = {
-      'rek': 0,
-      'sorrento': 1,
-      'rek2': 2
-    };
-    
-    buttons.forEach((button, index) => {
-      if (index === sceneButtonMap[selectedScene]) {
-        button.style.backgroundColor = '#363636';
-        button.style.borderColor = '#363636';
-        button.style.color = 'white';
-        button.classList.add('active');
-      } else {
-        button.style.backgroundColor = '#dbdbdb';
-        button.style.borderColor = '#dbdbdb';
-        button.style.color = '#363636';
-        button.classList.remove('active');
-      }
-    });
-  }
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    updateDistillationThumbnailGallery('rek');
-  });
-</script>
-
-<!-- Miu: Show Real-to-sim Scene Generation Result of UrbanVerse -->
-<section class="section" id="real-to-sim">
-  <div class="container">
-    <div class="has-text-centered" style="margin-bottom: 1rem;">
-      <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Real-to-sim Scene Generation Results of UrbanVerse.</h2>
-    </div>
-    <div class="has-text-centered" style="margin-bottom: 2rem;">
-      <p style="font-size: 1rem; color: #333; max-width: 1200px; margin: 0 auto;">Using the extracted scene layout as a blueprint and assets retrieved from UrbanVerse-100K, UrbanVerse generates simulation environments faithfully grounded in the real-world layout.</p>
-    </div>
-    <!-- City Selection Buttons -->
-    <div class="has-text-centered" style="margin-bottom: 1.5rem;">
-      <button class="button is-primary city-btn active" onclick="showVideo('beijing')" style="margin: 0 0.5rem; background-color: #363636; border-color: #363636; font-family: 'Roboto Mono', monospace;">Beijing</button>
-      <button class="button is-primary city-btn" onclick="showVideo('losangeles')" style="margin: 0 0.5rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Los Angeles</button>
-      <button class="button is-primary city-btn" onclick="showVideo('capetown')" style="margin: 0 0.5rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Cape Town</button>
-      <button class="button is-primary city-btn" onclick="showVideo('tangier')" style="margin: 0 0.5rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Tangier</button>
-    </div>
-    
-    <!-- Video Container -->
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
-          <video id="beijing-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="metadata" loading="lazy" src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_beijing_twin.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: block;"></video>
-          <video id="losangeles-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_los_angeles_twin.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
-          <video id="capetown-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_capetown_twin.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
-          <video id="tangier-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_tangier_twin.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
-        </div>
+      <div class="has-text-centered" style="margin-bottom: 2rem;">
+        <p style="font-size: 1.2rem; color: #333; max-width: 1400px; margin: 0 auto;">Introducing <strong>UrbanVerse</strong> — a system that converts real-world urban scenes from city-tour videos into physics-aware, interactive simulation environments</p>
+        <p style="font-size: 1.2rem; color: #333; max-width: 1400px; margin: 0 auto;">enabling scalable robot learning in urban spaces with real-world generalization.</p>
       </div>
-    </div>
-    
-    <!-- Preview Gallery -->
-    <div class="has-text-centered" style="margin-top: 1rem;">
-      <div style="display: inline-block; position: relative; background-color: #f5f5f5; border-radius: 10px; padding: 15px; max-width: 600px;">
-        <!-- Sliding Indicator Bar -->
-        <div id="indicator-bar" style="position: absolute; top: 10px; left: calc(15px + 0%); width: 25%; height: 4px; background-color: #363636; border-radius: 2px; transition: left 0.3s ease;"></div>
-        
-        <!-- Thumbnail Videos -->
-        <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 10px;">
-          <div class="thumbnail-container" onclick="showVideo('beijing')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="thumbnail-video" muted playsinline src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_beijing_twin.mp4" style="width: 100%; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid #363636;"></video>
-            <div style="text-align: center; margin-top: 5px; font-size: 0.8rem; font-weight: bold; color: #363636;">Beijing</div>
-          </div>
-          <div class="thumbnail-container" onclick="showVideo('losangeles')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="thumbnail-video" muted playsinline src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_los_angeles_twin.mp4" style="width: 100%; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 5px; font-size: 0.8rem; color: #666;">Los Angeles</div>
-          </div>
-          <div class="thumbnail-container" onclick="showVideo('capetown')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="thumbnail-video" muted playsinline src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_capetown_twin.mp4" style="width: 100%; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 5px; font-size: 0.8rem; color: #666;">Cape Town</div>
-          </div>
-          <div class="thumbnail-container" onclick="showVideo('tangier')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="thumbnail-video" muted playsinline src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_tangier_twin.mp4" style="width: 100%; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 5px; font-size: 0.8rem; color: #666;">Tangier</div>
+
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <!-- lazy via data-src -->
+            <video autoplay muted loop playsinline controls controlslist="nodownload"
+                   preload="none" loading="lazy" data-src="./static/urbanverse_videos/long_teaser_v9.mp4"
+                   poster="./static/videos/loading-icon.gif"
+                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" draggable="false"></video>
           </div>
         </div>
       </div>
     </div>
-    
-    <script>
-      function showVideo(city) {
-        // Hide all videos
-        const videos = document.querySelectorAll('.city-video');
-        videos.forEach(video => {
-          video.style.display = 'none';
-          video.pause();
-        });
-        
-        // Show selected video and reset to start
-        const selectedVideo = document.getElementById(city + '-video');
-        selectedVideo.style.display = 'block';
-        selectedVideo.currentTime = 0; // Reset to beginning
-        selectedVideo.play();
-        
-        // Update button styles
-        const buttons = document.querySelectorAll('.city-btn');
-        buttons.forEach(btn => {
-          btn.style.backgroundColor = '#dbdbdb';
-          btn.style.color = '#363636';
-          btn.style.borderColor = '#dbdbdb';
-          btn.classList.remove('active');
-        });
-        
-        // Highlight active button
-        const activeBtn = event.target;
-        if (activeBtn && activeBtn.classList.contains('city-btn')) {
-          activeBtn.style.backgroundColor = '#363636';
-          activeBtn.style.color = 'white';
-          activeBtn.style.borderColor = '#363636';
-          activeBtn.classList.add('active');
+  </section>
+
+  <!-- Real-to-sim -->
+  <section class="section" id="real-to-sim">
+    <div class="container">
+      <div class="has-text-centered" style="margin-bottom: 1rem;">
+        <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Real-to-sim Scene Generation Results of UrbanVerse.</h2>
+      </div>
+      <div class="has-text-centered" style="margin-bottom: 2rem;">
+        <p style="font-size: 1rem; color: #333; max-width: 1200px; margin: 0 auto;">Using the extracted scene layout as a blueprint and assets retrieved from UrbanVerse-100K, UrbanVerse generates simulation environments faithfully grounded in the real-world layout.</p>
+      </div>
+
+      <!-- City buttons -->
+      <div class="has-text-centered" style="margin-bottom: 1.5rem;">
+        <button class="button is-primary city-btn active" onclick="showVideo('beijing')" style="margin: 0 0.5rem; background-color: #363636; border-color: #363636;">Beijing</button>
+        <button class="button is-primary city-btn" onclick="showVideo('losangeles')" style="margin: 0 0.5rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb;">Los Angeles</button>
+        <button class="button is-primary city-btn" onclick="showVideo('capetown')" style="margin: 0 0.5rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb;">Cape Town</button>
+        <button class="button is-primary city-btn" onclick="showVideo('tangier')" style="margin: 0 0.5rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb;">Tangier</button>
+      </div>
+
+      <!-- Main city videos (data-src + preload none) -->
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <video id="beijing-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload"
+                   preload="none" loading="lazy" data-src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_beijing_twin.mp4"
+                   poster="./static/videos/loading-icon.gif"
+                   style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; display:block;"></video>
+
+            <video id="losangeles-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload"
+                   preload="none" loading="lazy" data-src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_los_angeles_twin.mp4"
+                   poster="./static/videos/loading-icon.gif"
+                   style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; display:none;"></video>
+
+            <video id="capetown-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload"
+                   preload="none" loading="lazy" data-src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_capetown_twin.mp4"
+                   poster="./static/videos/loading-icon.gif"
+                   style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; display:none;"></video>
+
+            <video id="tangier-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload"
+                   preload="none" loading="lazy" data-src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_tangier_twin.mp4"
+                   poster="./static/videos/loading-icon.gif"
+                   style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; display:none;"></video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thumbnail previews (also lazy) -->
+      <div class="has-text-centered" style="margin-top: 1rem;">
+        <div style="display: inline-block; position: relative; background-color: #f5f5f5; border-radius: 10px; padding: 15px; max-width: 600px;">
+          <div id="indicator-bar" style="position: absolute; top: 10px; left: calc(15px + 0%); width: 25%; height: 4px; background-color: #363636; border-radius: 2px; transition: left 0.3s ease;"></div>
+
+          <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 10px;">
+            <div class="thumbnail-container" onclick="showVideo('beijing')" style="flex: 1; cursor: pointer; position: relative;">
+              <video class="thumbnail-video" muted playsinline preload="none" loading="lazy"
+                     data-src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_beijing_twin.mp4"
+                     style="width: 100%; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid #363636;"></video>
+              <div style="text-align: center; margin-top: 5px; font-size: 0.8rem; font-weight: bold; color: #363636;">Beijing</div>
+            </div>
+            <div class="thumbnail-container" onclick="showVideo('losangeles')" style="flex: 1; cursor: pointer; position: relative;">
+              <video class="thumbnail-video" muted playsinline preload="none" loading="lazy"
+                     data-src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_los_angeles_twin.mp4"
+                     style="width: 100%; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
+              <div style="text-align: center; margin-top: 5px; font-size: 0.8rem; color: #666;">Los Angeles</div>
+            </div>
+            <div class="thumbnail-container" onclick="showVideo('capetown')" style="flex: 1; cursor: pointer; position: relative;">
+              <video class="thumbnail-video" muted playsinline preload="none" loading="lazy"
+                     data-src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_capetown_twin.mp4"
+                     style="width: 100%; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
+              <div style="text-align: center; margin-top: 5px; font-size: 0.8rem; color: #666;">Cape Town</div>
+            </div>
+            <div class="thumbnail-container" onclick="showVideo('tangier')" style="flex: 1; cursor: pointer; position: relative;">
+              <video class="thumbnail-video" muted playsinline preload="none" loading="lazy"
+                     data-src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_tangier_twin.mp4"
+                     style="width: 100%; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
+              <div style="text-align: center; margin-top: 5px; font-size: 0.8rem; color: #666;">Tangier</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function showVideo(city) {
+          const videos = document.querySelectorAll('.city-video');
+          videos.forEach(v => { v.style.display = 'none'; v.pause(); });
+
+          const selectedVideo = document.getElementById(city + '-video');
+          ensureVideoReady(selectedVideo);
+          selectedVideo.style.display = 'block';
+          selectedVideo.currentTime = 0;
+          selectedVideo.play();
+
+          // Update buttons
+          const buttons = document.querySelectorAll('.city-btn');
+          buttons.forEach(btn => { btn.style.backgroundColor = '#dbdbdb'; btn.style.color = '#363636'; btn.style.borderColor = '#dbdbdb'; btn.classList.remove('active'); });
+          const cityButtonMap = { 'beijing': 0, 'losangeles': 1, 'capetown': 2, 'tangier': 3 };
+          const activeBtn = buttons[cityButtonMap[city]];
+          if (activeBtn) { activeBtn.style.backgroundColor = '#363636'; activeBtn.style.color = 'white'; activeBtn.style.borderColor = '#363636'; activeBtn.classList.add('active'); }
+
+          updateThumbnailGallery(city);
         }
-        
-        // Update thumbnail gallery
-        updateThumbnailGallery(city);
-      }
-      
-      function updateThumbnailGallery(selectedCity) {
-        // Update sliding indicator bar position
-        const indicatorBar = document.getElementById('indicator-bar');
-        const cityPositions = {
-          'beijing': '0%',
-          'losangeles': '25%',
-          'capetown': '50%',
-          'tangier': '75%'
-        };
-        indicatorBar.style.left = `calc(15px + ${cityPositions[selectedCity]})`;
-        
-        // Update thumbnail borders and labels
-        const thumbnails = document.querySelectorAll('.thumbnail-video');
-        const labels = document.querySelectorAll('.thumbnail-container div');
-        
-        thumbnails.forEach((thumbnail, index) => {
-          const cities = ['beijing', 'losangeles', 'capetown', 'tangier'];
-          const isActive = cities[index] === selectedCity;
-          
-          thumbnail.style.border = isActive ? '2px solid #363636' : '2px solid transparent';
-          labels[index].style.fontWeight = isActive ? 'bold' : 'normal';
-          labels[index].style.color = isActive ? '#363636' : '#666';
-        });
-        
-        // Update button colors to match selected city
-        updateButtonColors(selectedCity);
-      }
-      
-      function updateButtonColors(selectedCity) {
-        // Reset all buttons to inactive state
-        const buttons = document.querySelectorAll('.city-btn');
-        buttons.forEach(btn => {
-          btn.style.backgroundColor = '#dbdbdb';
-          btn.style.color = '#363636';
-          btn.style.borderColor = '#dbdbdb';
-          btn.classList.remove('active');
-        });
-        
-        // Find and highlight the correct button based on city
-        const cityButtonMap = {
-          'beijing': 0,
-          'losangeles': 1,
-          'capetown': 2,
-          'tangier': 3
-        };
-        
-        const activeButtonIndex = cityButtonMap[selectedCity];
-        if (activeButtonIndex !== undefined && buttons[activeButtonIndex]) {
-          const activeBtn = buttons[activeButtonIndex];
-          activeBtn.style.backgroundColor = '#363636';
-          activeBtn.style.color = 'white';
-          activeBtn.style.borderColor = '#363636';
-          activeBtn.classList.add('active');
+
+        function updateThumbnailGallery(selectedCity) {
+          const indicatorBar = document.getElementById('indicator-bar');
+          const cityPositions = { 'beijing': '0%', 'losangeles': '25%', 'capetown': '50%', 'tangier': '75%' };
+          indicatorBar.style.left = `calc(15px + ${cityPositions[selectedCity]})`;
+
+          const thumbnails = document.querySelectorAll('.thumbnail-video');
+          const labels = document.querySelectorAll('.thumbnail-container div');
+          const cities = ['beijing','losangeles','capetown','tangier'];
+          thumbnails.forEach((thumb, i) => {
+            const active = cities[i] === selectedCity;
+            thumb.style.border = active ? '2px solid #363636' : '2px solid transparent';
+            labels[i].style.fontWeight = active ? 'bold' : 'normal';
+            labels[i].style.color = active ? '#363636' : '#666';
+          });
         }
-      }
-      
-      // Initialize the gallery on page load
-      document.addEventListener('DOMContentLoaded', function() {
-        updateThumbnailGallery('beijing');
-      });
-    </script>
-    <!-- Digital Cousin Scenes: Beijing, China -->
-    <div class="has-text-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
-      <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Generated Digital Cousin Scenes: Beijing, China.</h3>
-    </div>
-    <div class="has-text-centered" style="margin-bottom: 2rem;">
-      <p style="font-size: 1rem; color: #333; max-width: 1400px; margin: 0 auto;">Further, for the same city-tour video and its layout, UrbanVerse generates multiple diverse digital cousin scenes by instantiating the layout with different retrieved assets.</p>
-    </div>
-    
-    <div class="columns is-centered" style="margin-bottom: 0.2rem;">
-      <div class="column is-half is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/real_videos/masked_beijing_real.mp4.mov" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Input Video</p>
-      </div>
-      <div class="column is-half is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_beijing_5x/bj_01_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 01</p>
-      </div>
-    </div>
-    <div class="columns is-centered" style="margin-bottom: 0.2rem;">
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_beijing_5x/bj_02_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 02</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_beijing_5x/bj_03_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 03</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_beijing_5x/bj_04_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 04</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_beijing_5x/bj_05_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 05</p>
-      </div>
-    </div>
-    <!-- Digital Cousin Scenes: Tangier, Morocco -->
-    <div class="has-text-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
-      <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Generated Digital Cousin Scenes: Tangier, Morocco.</h3>
-    </div>
-    <div class="has-text-centered" style="margin-bottom: 2rem;">
-      <p style="font-size: 1rem; color: #333; max-width: 1400px; margin: 0 auto;">Further, for the same city-tour video and its layout, UrbanVerse generates multiple diverse digital cousin scenes by instantiating the layout with different retrieved assets.</p>
-    </div>
-    
-    <div class="columns is-centered" style="margin-bottom: 0.2rem;">
-      <div class="column is-half is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/real_videos/morocco.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Input Video</p>
-      </div>
-      <div class="column is-half is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_moroco_5x/morocco_00_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 01</p>
-      </div>
-    </div>
-    <div class="columns is-centered" style="margin-bottom: 0.2rem;">
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_moroco_5x/morocco_01_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 02</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_moroco_5x/morocco_02_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 03</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_moroco_5x/morocco_03_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 04</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_moroco_5x/morocco_04_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 05</p>
-      </div>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_moroco_5x/morocco_05_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 06</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_moroco_5x/morocco_06_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 07</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_moroco_5x/morocco_08_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 08</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/cousins_moroco_5x/morocco_09_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 09</p>
-      </div>
-    </div>
-    
 
-  </div>
-</section>
+        document.addEventListener('DOMContentLoaded', function(){ updateThumbnailGallery('beijing'); });
+      </script>
 
-<script>
-  // Hide TOC during hero section, show it afterwards
-  document.addEventListener('DOMContentLoaded', function() {
-    const toc = document.querySelector('.toc');
-    const heroSection = document.querySelector('.hero');
-    
-    // Initially hide TOC
-    if (toc) {
-      toc.style.display = 'none';
-    }
-    
-    // Show TOC when scrolling past hero section
-    window.addEventListener('scroll', function() {
-      if (!toc || !heroSection) return;
-      
-      const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-      const scrollPosition = window.pageYOffset;
-      
-      if (scrollPosition > heroBottom - 100) {
-        toc.style.display = 'block';
-      } else {
-        toc.style.display = 'none';
-      }
-    });
-  });
-</script>
+      <!-- Digital Cousin Scenes: Beijing -->
+      <div class="has-text-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
+        <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Generated Digital Cousin Scenes: Beijing, China.</h3>
+      </div>
+      <div class="has-text-centered" style="margin-bottom: 2rem;">
+        <p style="font-size: 1rem; color: #333; max-width: 1400px; margin: 0 auto;">Further, for the same city-tour video and its layout, UrbanVerse generates multiple diverse digital cousin scenes by instantiating the layout with different retrieved assets.</p>
+      </div>
 
+      <div class="columns is-centered" style="margin-bottom: 0.2rem;">
+        <div class="column is-half is-centered has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/real_videos/masked_beijing_real.mp4.mov" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Input Video</p>
+        </div>
+        <div class="column is-half is-centered has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_beijing_5x/bj_01_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 01</p>
+        </div>
+      </div>
 
-<!-- Miu: UrbanVerse-100K Dataset Walkthrough and Interactive Statistics -->
-<section class="section" id="dataset">
-  <div class="container">
-    <div class="has-text-centered" style="margin-bottom: 3rem;">
-      <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">UrbanVerse-100K Asset Database</h2>
-    </div>
-    <!-- First row: Video and Annotation Image -->
-    <div class="columns" style="margin-bottom: 2rem;">
-      <!-- Left side - Video -->
-      <div class="column is-half">
-        <div class="has-text-centered" style="margin-bottom: 1rem;" id="dataset-walkthrough">
-          <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Object Assets Walkthrough.</h3>
+      <div class="columns is-centered" style="margin-bottom: 0.2rem;">
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_beijing_5x/bj_02_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 02</p>
         </div>
-        <div class="has-text-centered">
-          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="metadata" loading="lazy" src="static/urbanverse_videos/UrbanVerse-100K-Database_Videos-and-Distribution/UrbanVerse-100K-Flythrough_Videos.mov" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 100%; max-width: 100%;"></video>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_beijing_5x/bj_03_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 03</p>
         </div>
-      </div>
-      
-      <!-- Right side - Annotation Image -->
-      <div class="column is-half">
-        <div class="has-text-centered" style="margin-bottom: 1rem;" id="annotation-example">
-          <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Example of Per-object Annotation.</h3>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_beijing_5x/bj_04_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 04</p>
         </div>
-        <div class="has-text-centered">
-          <img src="static/urbanverse_images/anno_attributes_dark_v2.png" alt="Example of Per-object Annotation" style="border-radius: 10px; width: 100%; max-width: 100%; border: 1px solid #ddd;">
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_beijing_5x/bj_05_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 05</p>
         </div>
       </div>
-    </div>
-    <!-- Third row: Material and Skymap thumbnails -->
-    <div class="columns is-centered" style="margin-top: 2rem;">
-      <div class="column is-one-third has-text-centered">
-        <div class="has-text-centered" style="margin-bottom: 0.75rem;" id="road-pbrs">
-          <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Examples of Road PBRs.</h3>
-        </div>
-        <img src="static/urbanverse_images/road_pbrs.png" alt="Road PBRs" style="border-radius: 10px; height: 560px; width: 100%; object-fit: contain; border: 1px solid #ddd;">
-      </div>
-      <div class="column is-one-third has-text-centered">
-        <div class="has-text-centered" style="margin-bottom: 0.75rem;" id="sidewalk-pbrs">
-          <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Examples of Sidewalk PBRs.</h3>
-        </div>
-        <img src="static/urbanverse_images/sidewalk_pbrs.png" alt="Sidewalk PBRs" style="border-radius: 10px; height: 560px; width: 100%; object-fit: contain; border: 1px solid #ddd;">
-      </div>
-      <div class="column is-one-third has-text-centered">
-        <div class="has-text-centered" style="margin-bottom: 0.75rem;" id="sky-hdris">
-          <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Examples of Sky HDRIs.</h3>
-        </div>
-        <img src="static/urbanverse_images/sky_hdris.png" alt="Sky HDRIs" style="border-radius: 10px; height: 560px; width: 100%; object-fit: contain; border: 1px solid #ddd;">
-      </div>
-    </div>
-    <!-- Second row: Interactive Statistics -->
-    <div class="columns">
-      <div class="column is-full">
-        <div class="has-text-centered" style="margin-bottom: 1rem;" id="interactive-stats">
-          <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Interactive Statistics of Object Category Distributions in UrbanVerse-100K.</h3>
-        </div>
-        <p class="has-text-centered" style="font-size: 0.9rem; margin-bottom: 1rem; color: #666;">
-          <strong>Interactive Features:</strong> Click on any segment to drill down into subcategories. Use the center to navigate back up the hierarchy.
-          <a href="./UrbanVerse-100K_Interactive_Distribution.html" target="_blank" class="button is-link is-small" style="margin-left: 1rem;">
-            <span class="icon">
-              <i class="fas fa-external-link-alt"></i>
-            </span>
-            <span>Better View in Full Screen</span>
-          </a>
-        </p>
-        <div style="position: relative; width: 100%; height: 800px; border: 1px solid #ddd; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-          <iframe 
-            src="./UrbanVerse-100K_Interactive_Distribution.html" 
-            width="100%" 
-            height="100%" 
-            frameborder="0"
-            style="border: none;">
-            Your browser does not support iframes. Please <a href="./UrbanVerse-100K_Interactive_Distribution.html" target="_blank">click here to view the interactive visualization</a>.
-          </iframe>
-        </div>
-      </div>
-    </div>
 
-  </div>
-</section>
+      <!-- Tangier group -->
+      <div class="has-text-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
+        <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Generated Digital Cousin Scenes: Tangier, Morocco.</h3>
+      </div>
+      <div class="has-text-centered" style="margin-bottom: 2rem;">
+        <p style="font-size: 1rem; color: #333; max-width: 1400px; margin: 0 auto;">Further, for the same city-tour video and its layout, UrbanVerse generates multiple diverse digital cousin scenes by instantiating the layout with different retrieved assets.</p>
+      </div>
 
-<!-- Miu: Show 10 CraftBench Test Scenes -->
-<section class="section" id="craftbench">
-  <div class="container">
-    <div class="has-text-centered" style="margin-bottom: 2rem;">
-      <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">CraftBench Test Scenes Gallery.</h2>
-    </div>
-    <div class="columns is-centered" style="margin-bottom: 0.2rem;">
-      <div class="column is-half is-centered has-text-centered">
-        <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_06.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Scene 01</p>
-      </div>
-      <div class="column is-half is-centered has-text-centered">
-        <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_08.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Scene 02</p>
-      </div>
-    </div>
-    <div class="columns is-centered" style="margin-bottom: 0.2rem;">
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_01.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Scene 03</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_02.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Scene 04</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_03.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Scene 05</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_04.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Scene 06</p>
-      </div>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_05.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Scene 07</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_07.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Scene 08</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_09.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Scene 09</p>
-      </div>
-      <div class="column is-quarter is-centered has-text-centered">
-        <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_10.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
-        <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Scene 10</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Real-world City-tour Videos acorss the World -->
-<section class="section" id="city-tour-collection">
-  <div class="container">
-    <div class="has-text-centered" style="margin-bottom: 3rem;">
-      <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Diverse Real-world City Tour Video Collection for Urban Simulation Layout Grounding.</h2>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
-          <video autoplay muted loop playsinline controls controlslist="nodownload"
-                 preload="metadata" loading="lazy"
-                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover;">
-            <source src="./static/urbanverse_videos/city_tour_montage.mp4" type="video/mp4">
-          </video>
+      <!-- Rows of Tangier videos (all lazy) -->
+      <div class="columns is-centered" style="margin-bottom: 0.2rem;">
+        <div class="column is-half has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/real_videos/morocco.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Input Video</p>
+        </div>
+        <div class="column is-half has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_moroco_5x/morocco_00_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Digital Cousin Scene 01</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- Real-world Scene Distillation -->
-<section class="section" id="scene-distillation">
-  <div class="container">
-    <div class="has-text-centered" style="margin-bottom: 1rem;">
-      <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Real-world Scene Layout Distillation.</h2>
-    </div>
-    <div class="has-text-centered" style="margin-bottom: 2rem;">
-      <p style="font-size: 1rem; color: #333; max-width: 1200px; margin: 0 auto;">Given the uncalibrated RGB city-tour videos, we use the UrbanVerse-Gen pipeline to extract the real-world semantic scene layouts.</p>
-    </div>
-    <!-- Scene Selection Buttons -->
-    <div class="has-text-centered" style="margin-bottom: 1.5rem;">
-      <button class="button is-primary distillation-btn active" onclick="showDistillationScene('rek')" style="margin: 0 0.5rem; background-color: #363636; border-color: #363636; font-family: 'Roboto Mono', monospace;">Scene 01</button>
-      <button class="button is-primary distillation-btn" onclick="showDistillationScene('sorrento')" style="margin: 0 0.5rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 02</button>
-      <button class="button is-primary distillation-btn" onclick="showDistillationScene('rek2')" style="margin: 0 0.5rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 03</button>
-    </div>
-    
-    <!-- Video Container -->
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
-          <video id="sorrento-video" class="distillation-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/recon_videos_3x/sorrento_dirty.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
-          <video id="rek2-video" class="distillation-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/recon_videos_3x/rek2_dirty.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
-          <video id="rek-video" class="distillation-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="metadata" loading="lazy" src="static/urbanverse_videos/recon_videos_3x/rek_dirty.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: block;"></video>
+      <div class="columns is-centered" style="margin-bottom: 0.2rem;">
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_moroco_5x/morocco_01_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; margin:0.1rem 0.5rem;"></video>
+          <p class="video-title">Digital Cousin Scene 02</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_moroco_5x/morocco_02_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; margin:0.1rem 0.5rem;"></video>
+          <p class="video-title">Digital Cousin Scene 03</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_moroco_5x/morocco_03_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; margin:0.1rem 0.5rem;"></video>
+          <p class="video-title">Digital Cousin Scene 04</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_moroco_5x/morocco_04_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; margin:0.1rem 0.5rem;"></video>
+          <p class="video-title">Digital Cousin Scene 05</p>
         </div>
       </div>
+
+      <div class="columns is-centered">
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_moroco_5x/morocco_05_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; margin:0.1rem 0.5rem;"></video>
+          <p class="video-title">Digital Cousin Scene 06</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_moroco_5x/morocco_06_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; margin:0.1rem 0.5rem;"></video>
+          <p class="video-title">Digital Cousin Scene 07</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_moroco_5x/morocco_08_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; margin:0.1rem 0.5rem;"></video>
+          <p class="video-title">Digital Cousin Scene 08</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline preload="none" loading="lazy" data-src="./static/urbanverse_videos/cousins_moroco_5x/morocco_09_digital.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; margin:0.1rem 0.5rem;"></video>
+          <p class="video-title">Digital Cousin Scene 09</p>
+        </div>
+      </div>
+
     </div>
-    
-    <!-- Preview Gallery -->
-    <div class="has-text-centered" style="margin-top: 1rem;">
-      <div style="display: inline-block; position: relative; background-color: #f5f5f5; border-radius: 10px; padding: 15px; max-width: 600px;">
-        <div id="distillation-indicator-bar" style="position: absolute; top: 10px; left: calc(15px + 0%); width: 33.33%; height: 4px; background-color: #363636; border-radius: 2px; transition: left 0.3s ease;"></div>
-        <div style="display: flex; justify-content: space-between; gap: 8px; margin-top: 10px;">
-          <div class="distillation-thumbnail-container" onclick="showDistillationScene('rek')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="distillation-thumbnail-video" muted playsinline src="static/urbanverse_videos/recon_videos_3x/rek_dirty.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid #363636;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; font-weight: bold; color: #363636; font-family: 'Roboto Mono', monospace;">Scene 01</div>
+  </section>
+
+  <!-- Dataset -->
+  <section class="section" id="dataset">
+    <div class="container">
+      <div class="has-text-centered" style="margin-bottom: 3rem;">
+        <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">UrbanVerse-100K Asset Database</h2>
+      </div>
+
+      <div class="columns" style="margin-bottom: 2rem;">
+        <div class="column is-half">
+          <div class="has-text-centered" style="margin-bottom: 1rem;" id="dataset-walkthrough">
+            <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Object Assets Walkthrough.</h3>
           </div>
-          <div class="distillation-thumbnail-container" onclick="showDistillationScene('sorrento')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="distillation-thumbnail-video" muted playsinline src="static/urbanverse_videos/recon_videos_3x/sorrento_dirty.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 02</div>
+          <div class="has-text-centered">
+            <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy"
+                   data-src="static/urbanverse_videos/UrbanVerse-100K-Database_Videos-and-Distribution/UrbanVerse-100K-Flythrough_Videos.mov"
+                   poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 100%; max-width: 100%;"></video>
           </div>
-          <div class="distillation-thumbnail-container" onclick="showDistillationScene('rek2')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="distillation-thumbnail-video" muted playsinline src="static/urbanverse_videos/recon_videos_3x/rek2_dirty.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 03</div>
+        </div>
+
+        <div class="column is-half">
+          <div class="has-text-centered" style="margin-bottom: 1rem;" id="annotation-example">
+            <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Example of Per-object Annotation.</h3>
+          </div>
+          <div class="has-text-centered">
+            <img src="static/urbanverse_images/anno_attributes_dark_v2.png" alt="Example of Per-object Annotation" style="border-radius: 10px; width: 100%; max-width: 100%; border: 1px solid #ddd;">
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-one-third has-text-centered">
+          <div class="has-text-centered" style="margin-bottom: 0.75rem;" id="road-pbrs">
+            <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Examples of Road PBRs.</h3>
+          </div>
+          <img src="static/urbanverse_images/road_pbrs.png" alt="Road PBRs" style="border-radius: 10px; height: 560px; width: 100%; object-fit: contain; border: 1px solid #ddd;">
+        </div>
+        <div class="column is-one-third has-text-centered">
+          <div class="has-text-centered" style="margin-bottom: 0.75rem;" id="sidewalk-pbrs">
+            <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Examples of Sidewalk PBRs.</h3>
+          </div>
+          <img src="static/urbanverse_images/sidewalk_pbrs.png" alt="Sidewalk PBRs" style="border-radius: 10px; height: 560px; width: 100%; object-fit: contain; border: 1px solid #ddd;">
+        </div>
+        <div class="column is-one-third has-text-centered">
+          <div class="has-text-centered" style="margin-bottom: 0.75rem;" id="sky-hdris">
+            <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Examples of Sky HDRIs.</h3>
+          </div>
+          <img src="static/urbanverse_images/sky_hdris.png" alt="Sky HDRIs" style="border-radius: 10px; height: 560px; width: 100%; object-fit: contain; border: 1px solid #ddd;">
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column is-full">
+          <div class="has-text-centered" style="margin-bottom: 1rem;" id="interactive-stats">
+            <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Interactive Statistics of Object Category Distributions in UrbanVerse-100K.</h3>
+          </div>
+          <p class="has-text-centered" style="font-size: 0.9rem; margin-bottom: 1rem; color: #666;">
+            <strong>Interactive Features:</strong> Click on any segment to drill down into subcategories. Use the center to navigate back up the hierarchy.
+            <a href="./UrbanVerse-100K_Interactive_Distribution.html" target="_blank" class="button is-link is-small" style="margin-left: 1rem;">
+              <span class="icon"><i class="fas fa-external-link-alt"></i></span>
+              <span>Better View in Full Screen</span>
+            </a>
+          </p>
+          <div style="position: relative; width: 100%; height: 800px; border: 1px solid #ddd; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <iframe src="./UrbanVerse-100K_Interactive_Distribution.html" width="100%" height="100%" frameborder="0" style="border: none;">
+              Your browser does not support iframes. Please <a href="./UrbanVerse-100K_Interactive_Distribution.html" target="_blank">click here to view the interactive visualization</a>.
+            </iframe>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Miu: Real World Results -->
-<section class="section" id="real-world-results">
-  <div class="container">
-    <div class="has-text-centered" style="margin-bottom: 1.5rem;">
-      <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Real-World Urban Navigation Results of PPO-UrbanVerse on Diverse Street Environments.</h2>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
-          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="metadata" loading="lazy" src="static/urbanverse_videos/UrbanVerse-Policy-Real-World-Deployment-Videos/Zero-shot-Sim-to-real-Generalization-Results_Video.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover;"></video>
+  <!-- CraftBench -->
+  <section class="section" id="craftbench">
+    <div class="container">
+      <div class="has-text-centered" style="margin-bottom: 2rem;">
+        <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">CraftBench Test Scenes Gallery.</h2>
+      </div>
+
+      <!-- 2-up -->
+      <div class="columns is-centered" style="margin-bottom: 0.2rem;">
+        <div class="column is-half has-text-centered">
+          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" data-src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_06.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title">Scene 01</p>
+        </div>
+        <div class="column is-half has-text-centered">
+          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" data-src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_08.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title">Scene 02</p>
+        </div>
+      </div>
+
+      <!-- 4-up -->
+      <div class="columns is-centered" style="margin-bottom: 0.2rem;">
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" data-src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_01.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title">Scene 03</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" data-src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_02.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title">Scene 04</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" data-src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_03.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title">Scene 05</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" data-src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_04.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title">Scene 06</p>
+        </div>
+      </div>
+
+      <!-- 4-up -->
+      <div class="columns is-centered">
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" data-src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_05.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title">Scene 07</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" data-src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_07.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title">Scene 08</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" data-src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_09.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title">Scene 09</p>
+        </div>
+        <div class="column is-quarter has-text-centered">
+          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy" data-src="./static/urbanverse_videos/CraftBench-Scene_Videos/scene_10.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+          <p class="video-title">Scene 10</p>
         </div>
       </div>
     </div>
-    
-    <!-- Real-world Side-by-Side Comparison Subsection -->
-    <div class="has-text-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
-      <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Side-by-Side Comparison: COCO Wheeled Robot (3x Speed).</h3>
-    </div>
-    
-    <!-- Scene Selection Buttons -->
-    <div class="has-text-centered" style="margin-bottom: 1.5rem;">
-      <button class="button is-primary scene-btn active" onclick="showScene('scene05')" style="margin: 0 0.3rem; background-color: #363636; border-color: #363636; font-family: 'Roboto Mono', monospace;">Scene 01</button>
-      <button class="button is-primary scene-btn" onclick="showScene('scene06')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 02</button>
-      <button class="button is-primary scene-btn" onclick="showScene('scene07')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 03</button>
-      <button class="button is-primary scene-btn" onclick="showScene('scene09')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 04</button>
-      <button class="button is-primary scene-btn" onclick="showScene('customized')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 05</button>
-      <button class="button is-primary scene-btn" onclick="showScene('scene04')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 06</button>
-      <button class="button is-primary scene-btn" onclick="showScene('scene02')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 07</button>
-    </div>
-    
-    <!-- Video Container -->
-    <div class="has-text-centered">
-      <video id="scene02-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s02_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="scene04-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s04_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="scene05-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="metadata" loading="lazy" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s05_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: block; margin: 0 auto;"></video>
-      <video id="scene06-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s06_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="scene07-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s07_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="scene09-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s09_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="customized-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_customized_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-    </div>
-    
-    <!-- Preview Gallery -->
-    <div class="has-text-centered" style="margin-top: 1rem;">
-      <div style="display: inline-block; position: relative; background-color: #f5f5f5; border-radius: 10px; padding: 15px; max-width: 800px;">
-        <!-- Sliding Indicator Bar -->
-        <div id="scene-indicator-bar" style="position: absolute; top: 10px; left: calc(15px + 0%); width: 14.28%; height: 4px; background-color: #363636; border-radius: 2px; transition: left 0.3s ease;"></div>
-        
-        <!-- Thumbnail Videos -->
-        <div style="display: flex; justify-content: space-between; gap: 8px; margin-top: 10px;">
-          <div class="scene-thumbnail-container" onclick="showScene('scene05')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s05_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid #363636;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; font-weight: bold; color: #363636; font-family: 'Roboto Mono', monospace;">Scene 01</div>
-          </div>
-          <div class="scene-thumbnail-container" onclick="showScene('scene06')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s06_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 02</div>
-          </div>
-          <div class="scene-thumbnail-container" onclick="showScene('scene07')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s07_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 03</div>
-          </div>
-          <div class="scene-thumbnail-container" onclick="showScene('scene09')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s09_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 04</div>
-          </div>
-          <div class="scene-thumbnail-container" onclick="showScene('customized')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_customized_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 05</div>
-          </div>
-          <div class="scene-thumbnail-container" onclick="showScene('scene04')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s04_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 06</div>
-          </div>
-          <div class="scene-thumbnail-container" onclick="showScene('scene02')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s02_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 07</div>
+  </section>
+
+  <!-- City-tour collection -->
+  <section class="section" id="city-tour-collection">
+    <div class="container">
+      <div class="has-text-centered" style="margin-bottom: 3rem;">
+        <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Diverse Real-world City Tour Video Collection for Urban Simulation Layout Grounding.</h2>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <video autoplay muted loop playsinline controls controlslist="nodownload"
+                   preload="none" loading="lazy" data-src="./static/urbanverse_videos/city_tour_montage.mp4"
+                   poster="./static/videos/loading-icon.gif"
+                   style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;"></video>
           </div>
         </div>
       </div>
     </div>
-    
-    <script>
-      function showScene(scene) {
-        // Hide all videos
-        const videos = document.querySelectorAll('.scene-video');
-        videos.forEach(video => {
-          video.style.display = 'none';
-          video.pause();
-        });
-        
-        // Show selected video and reset to start
-        const selectedVideo = document.getElementById(scene + '-video');
-        selectedVideo.style.display = 'block';
-        selectedVideo.currentTime = 0; // Reset to beginning
-        selectedVideo.play();
-        
-        // Update button styles
-        const buttons = document.querySelectorAll('.scene-btn');
-        buttons.forEach(btn => {
-          btn.style.backgroundColor = '#dbdbdb';
-          btn.style.color = '#363636';
-          btn.style.borderColor = '#dbdbdb';
-          btn.classList.remove('active');
-        });
-        
-        // Highlight active button
-        const activeBtn = event.target;
-        if (activeBtn && activeBtn.classList.contains('scene-btn')) {
-          activeBtn.style.backgroundColor = '#363636';
-          activeBtn.style.color = 'white';
-          activeBtn.style.borderColor = '#363636';
-          activeBtn.classList.add('active');
+  </section>
+
+  <!-- Scene distillation -->
+  <section class="section" id="scene-distillation">
+    <div class="container">
+      <div class="has-text-centered" style="margin-bottom: 1rem;">
+        <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Real-world Scene Layout Distillation.</h2>
+      </div>
+      <div class="has-text-centered" style="margin-bottom: 2rem;">
+        <p style="font-size: 1rem; color: #333; max-width: 1200px; margin: 0 auto;">Given the uncalibrated RGB city-tour videos, we use the UrbanVerse-Gen pipeline to extract the real-world semantic scene layouts.</p>
+      </div>
+
+      <div class="has-text-centered" style="margin-bottom: 1.5rem;">
+        <button class="button is-primary distillation-btn active" onclick="showDistillationScene('rek')" style="margin: 0 0.5rem; background-color: #363636; border-color: #363636;">Scene 01</button>
+        <button class="button is-primary distillation-btn" onclick="showDistillationScene('sorrento')" style="margin: 0 0.5rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb;">Scene 02</button>
+        <button class="button is-primary distillation-btn" onclick="showDistillationScene('rek2')" style="margin: 0 0.5rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb;">Scene 03</button>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <video id="sorrento-video" class="distillation-video" autoplay loop muted playsinline controls controlslist="nodownload"
+                   preload="none" loading="lazy" data-src="static/urbanverse_videos/recon_videos_3x/sorrento_dirty.mp4"
+                   poster="./static/videos/loading-icon.gif"
+                   style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; display:none;"></video>
+
+            <video id="rek2-video" class="distillation-video" autoplay loop muted playsinline controls controlslist="nodownload"
+                   preload="none" loading="lazy" data-src="static/urbanverse_videos/recon_videos_3x/rek2_dirty.mp4"
+                   poster="./static/videos/loading-icon.gif"
+                   style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; display:none;"></video>
+
+            <video id="rek-video" class="distillation-video" autoplay loop muted playsinline controls controlslist="nodownload"
+                   preload="none" loading="lazy" data-src="static/urbanverse_videos/recon_videos_3x/rek_dirty.mp4"
+                   poster="./static/videos/loading-icon.gif"
+                   style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; display:block;"></video>
+          </div>
+        </div>
+      </div>
+
+      <div class="has-text-centered" style="margin-top: 1rem;">
+        <div style="display: inline-block; position: relative; background-color: #f5f5f5; border-radius: 10px; padding: 15px; max-width: 600px;">
+          <div id="distillation-indicator-bar" style="position: absolute; top: 10px; left: calc(15px + 0%); width: 33.33%; height: 4px; background-color: #363636; border-radius: 2px; transition: left 0.3s ease;"></div>
+          <div style="display: flex; justify-content: space-between; gap: 8px; margin-top: 10px;">
+            <div class="distillation-thumbnail-container" onclick="showDistillationScene('rek')" style="flex: 1; cursor: pointer; position: relative;">
+              <video class="distillation-thumbnail-video" muted playsinline preload="none" loading="lazy"
+                     data-src="static/urbanverse_videos/recon_videos_3x/rek_dirty.mp4"
+                     style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid #363636;"></video>
+              <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; font-weight: bold; color: #363636;">Scene 01</div>
+            </div>
+            <div class="distillation-thumbnail-container" onclick="showDistillationScene('sorrento')" style="flex: 1; cursor: pointer; position: relative;">
+              <video class="distillation-thumbnail-video" muted playsinline preload="none" loading="lazy"
+                     data-src="static/urbanverse_videos/recon_videos_3x/sorrento_dirty.mp4"
+                     style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
+              <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666;">Scene 02</div>
+            </div>
+            <div class="distillation-thumbnail-container" onclick="showDistillationScene('rek2')" style="flex: 1; cursor: pointer; position: relative;">
+              <video class="distillation-thumbnail-video" muted playsinline preload="none" loading="lazy"
+                     data-src="static/urbanverse_videos/recon_videos_3x/rek2_dirty.mp4"
+                     style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
+              <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666;">Scene 03</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function showDistillationScene(scene) {
+          const videos = document.querySelectorAll('.distillation-video');
+          videos.forEach(v => { v.style.display = 'none'; v.pause(); });
+
+          const selectedVideo = document.getElementById(scene + '-video');
+          ensureVideoReady(selectedVideo);
+          selectedVideo.style.display = 'block';
+          selectedVideo.currentTime = 0;
+          selectedVideo.play();
+
+          updateDistillationThumbnailGallery(scene);
+          updateDistillationButtonColors(scene);
         }
-        
-        // Update thumbnail gallery
-        updateSceneThumbnailGallery(scene);
-      }
-      
-      function updateSceneThumbnailGallery(selectedScene) {
-        // Update sliding indicator bar position
-        const indicatorBar = document.getElementById('scene-indicator-bar');
-        const scenePositions = {
-          'scene05': '0%',
-          'scene06': '14.28%',
-          'scene07': '28.56%',
-          'scene09': '42.84%',
-          'customized': '57.12%',
-          'scene04': '71.40%',
-          'scene02': '85.68%'
-        };
-        indicatorBar.style.left = `calc(15px + ${scenePositions[selectedScene]})`;
-        
-        // Update thumbnail borders and labels
-        const thumbnails = document.querySelectorAll('.scene-thumbnail-video');
-        const labels = document.querySelectorAll('.scene-thumbnail-container div');
-        
-        thumbnails.forEach((thumbnail, index) => {
-          const scenes = ['scene05', 'scene06', 'scene07', 'scene09', 'customized', 'scene04', 'scene02'];
-          const isActive = scenes[index] === selectedScene;
-          
-          thumbnail.style.border = isActive ? '2px solid #363636' : '2px solid transparent';
-          labels[index].style.fontWeight = isActive ? 'bold' : 'normal';
-          labels[index].style.color = isActive ? '#363636' : '#666';
-        });
-        
-        // Update button colors to match selected scene
-        updateSceneButtonColors(selectedScene);
-      }
-      
-      function updateSceneButtonColors(selectedScene) {
-        // Reset all buttons to inactive state
-        const buttons = document.querySelectorAll('.scene-btn');
-        buttons.forEach(btn => {
-          btn.style.backgroundColor = '#dbdbdb';
-          btn.style.color = '#363636';
-          btn.style.borderColor = '#dbdbdb';
-          btn.classList.remove('active');
-        });
-        
-        // Find and highlight the correct button based on scene
-        const sceneButtonMap = {
-          'scene05': 0,
-          'scene06': 1,
-          'scene07': 2,
-          'scene09': 3,
-          'customized': 4,
-          'scene04': 5,
-          'scene02': 6
-        };
-        
-        const activeButtonIndex = sceneButtonMap[selectedScene];
-        if (activeButtonIndex !== undefined && buttons[activeButtonIndex]) {
-          const activeBtn = buttons[activeButtonIndex];
-          activeBtn.style.backgroundColor = '#363636';
-          activeBtn.style.color = 'white';
-          activeBtn.style.borderColor = '#363636';
-          activeBtn.classList.add('active');
+
+        function updateDistillationThumbnailGallery(selectedScene) {
+          const indicatorBar = document.getElementById('distillation-indicator-bar');
+          const scenePositions = { 'rek': '0%', 'sorrento': '33.33%', 'rek2': '66.66%' };
+          indicatorBar.style.left = `calc(15px + ${scenePositions[selectedScene]})`;
+
+          const thumbnails = document.querySelectorAll('.distillation-thumbnail-container');
+          thumbnails.forEach(container => {
+            const video = container.querySelector('.distillation-thumbnail-video');
+            const label = container.querySelector('div:last-child');
+            const contains = container.onclick && container.onclick.toString().includes(selectedScene);
+            video.style.border = contains ? '2px solid #363636' : '2px solid transparent';
+            label.style.color = contains ? '#363636' : '#666';
+            label.style.fontWeight = contains ? 'bold' : 'normal';
+          });
         }
-      }
-      
-      // Initialize the gallery on page load
-      document.addEventListener('DOMContentLoaded', function() {
-        updateSceneThumbnailGallery('scene05');
-      });
-    </script>
-    
-    <!-- Side-by-Side Comparison: Go2 Quadruped Robot Subsection -->
-    <div class="has-text-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
-      <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Side-by-Side Comparison: Go2 Quadruped Robot (3x Speed).</h3>
+
+        function updateDistillationButtonColors(selectedScene) {
+          const buttons = document.querySelectorAll('.distillation-btn');
+          const order = { 'rek': 0, 'sorrento': 1, 'rek2': 2 };
+          buttons.forEach((btn, idx) => {
+            const active = idx === order[selectedScene];
+            btn.style.backgroundColor = active ? '#363636' : '#dbdbdb';
+            btn.style.color = active ? 'white' : '#363636';
+            btn.style.borderColor = active ? '#363636' : '#dbdbdb';
+            btn.classList.toggle('active', active);
+          });
+        }
+
+        document.addEventListener('DOMContentLoaded', function(){ updateDistillationThumbnailGallery('rek'); });
+      </script>
     </div>
-    
-    <!-- Go2 Scene Selection Buttons -->
-    <div class="has-text-centered" style="margin-bottom: 1.5rem;">
-      <button class="button is-primary go2-scene-btn active" onclick="showGo2Scene('s04')" style="margin: 0 0.3rem; background-color: #363636; border-color: #363636; font-family: 'Roboto Mono', monospace;">Scene 01</button>
-      <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s05')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 02</button>
-      <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s07')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 03</button>
-      <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s03')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 04</button>
-      <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s01')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 05</button>
-      <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s16')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 06</button>
-      <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s14')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb; font-family: 'Roboto Mono', monospace;">Scene 07</button>
-    </div>
-    
-    <!-- Go2 Video Container -->
-    <div class="has-text-centered">
-      <video id="s01-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s01_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="s03-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s03_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="s04-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="metadata" loading="lazy" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s04_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: block; margin: 0 auto;"></video>
-      <video id="s05-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s05_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="s07-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s07_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="s14-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s14_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="s16-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s16_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-    </div>
-    
-    <!-- Go2 Preview Gallery -->
-    <div class="has-text-centered" style="margin-top: 1rem;">
-      <div style="display: inline-block; position: relative; background-color: #f5f5f5; border-radius: 10px; padding: 15px; max-width: 800px;">
-        <!-- Sliding Indicator Bar -->
-        <div id="go2-scene-indicator-bar" style="position: absolute; top: 10px; left: calc(15px + 0%); width: 14.28%; height: 4px; background-color: #363636; border-radius: 2px; transition: left 0.3s ease;"></div>
-        
-        <!-- Thumbnail Videos -->
-        <div style="display: flex; justify-content: space-between; gap: 8px; margin-top: 10px;">
-          <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s04')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="go2-scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s04_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid #363636;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; font-weight: bold; color: #363636; font-family: 'Roboto Mono', monospace;">Scene 01</div>
+  </section>
+
+  <!-- Real-world results -->
+  <section class="section" id="real-world-results">
+    <div class="container">
+      <div class="has-text-centered" style="margin-bottom: 1.5rem;">
+        <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Real-World Urban Navigation Results of PPO-UrbanVerse on Diverse Street Environments.</h2>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <video autoplay loop muted playsinline controls controlslist="nodownload" preload="none" loading="lazy"
+                   data-src="static/urbanverse_videos/UrbanVerse-Policy-Real-World-Deployment-Videos/Zero-shot-Sim-to-real-Generalization-Results_Video.mp4"
+                   poster="./static/videos/loading-icon.gif"
+                   style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;"></video>
           </div>
-          <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s05')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="go2-scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s05_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 02</div>
+        </div>
+      </div>
+
+      <div class="has-text-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
+        <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Side-by-Side Comparison: COCO Wheeled Robot (3x Speed).</h3>
+      </div>
+
+      <div class="has-text-centered" style="margin-bottom: 1.5rem;">
+        <button class="button is-primary scene-btn active" onclick="showScene('scene05')" style="margin: 0 0.3rem; background-color: #363636; border-color: #363636;">Scene 01</button>
+        <button class="button is-primary scene-btn" onclick="showScene('scene06')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb;">Scene 02</button>
+        <button class="button is-primary scene-btn" onclick="showScene('scene07')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb;">Scene 03</button>
+        <button class="button is-primary scene-btn" onclick="showScene('scene09')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb;">Scene 04</button>
+        <button class="button is-primary scene-btn" onclick="showScene('customized')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb;">Scene 05</button>
+        <button class="button is-primary scene-btn" onclick="showScene('scene04')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb;">Scene 06</button>
+        <button class="button is-primary scene-btn" onclick="showScene('scene02')" style="margin: 0 0.3rem; background-color: #dbdbdb; color: #363636; border-color: #dbdbdb;">Scene 07</button>
+      </div>
+
+      <div class="has-text-centered">
+        <video id="scene02-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s02_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+        <video id="scene04-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s04_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+        <video id="scene05-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s05_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: block; margin: 0 auto;"></video>
+        <video id="scene06-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s06_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+        <video id="scene07-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s07_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+        <video id="scene09-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s09_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+        <video id="customized-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_customized_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+      </div>
+
+      <div class="has-text-centered" style="margin-top: 1rem;">
+        <div style="display: inline-block; position: relative; background-color: #f5f5f5; border-radius: 10px; padding: 15px; max-width: 800px;">
+          <div id="scene-indicator-bar" style="position: absolute; top: 10px; left: calc(15px + 0%); width: 14.28%; height: 4px; background-color: #363636; border-radius: 2px; transition: left 0.3s ease;"></div>
+
+          <div style="display: flex; justify-content: space-between; gap: 8px; margin-top: 10px;">
+            <div class="scene-thumbnail-container" onclick="showScene('scene05')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s05_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid #363636;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; font-weight:bold; color:#363636;">Scene 01</div>
+            </div>
+            <div class="scene-thumbnail-container" onclick="showScene('scene06')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s06_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 02</div>
+            </div>
+            <div class="scene-thumbnail-container" onclick="showScene('scene07')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s07_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 03</div>
+            </div>
+            <div class="scene-thumbnail-container" onclick="showScene('scene09')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s09_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 04</div>
+            </div>
+            <div class="scene-thumbnail-container" onclick="showScene('customized')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_customized_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 05</div>
+            </div>
+            <div class="scene-thumbnail-container" onclick="showScene('scene04')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s04_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 06</div>
+            </div>
+            <div class="scene-thumbnail-container" onclick="showScene('scene02')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s02_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 07</div>
+            </div>
           </div>
-          <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s07')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="go2-scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s07_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 03</div>
+        </div>
+      </div>
+
+      <script>
+        function showScene(scene) {
+          const vids = document.querySelectorAll('.scene-video');
+          vids.forEach(v => { v.style.display = 'none'; v.pause(); });
+
+          const selectedVideo = document.getElementById(scene + '-video');
+          ensureVideoReady(selectedVideo);
+          selectedVideo.style.display = 'block';
+          selectedVideo.currentTime = 0;
+          selectedVideo.play();
+
+          // buttons
+          const buttons = document.querySelectorAll('.scene-btn');
+          const order = { 'scene05':0,'scene06':1,'scene07':2,'scene09':3,'customized':4,'scene04':5,'scene02':6 };
+          buttons.forEach((btn, i) => {
+            const active = i === order[scene];
+            btn.style.backgroundColor = active ? '#363636' : '#dbdbdb';
+            btn.style.color = active ? 'white' : '#363636';
+            btn.style.borderColor = active ? '#363636' : '#dbdbdb';
+            btn.classList.toggle('active', active);
+          });
+
+          updateSceneThumbnailGallery(scene);
+        }
+
+        function updateSceneThumbnailGallery(selectedScene) {
+          const indicatorBar = document.getElementById('scene-indicator-bar');
+          const scenePositions = { 'scene05':'0%','scene06':'14.28%','scene07':'28.56%','scene09':'42.84%','customized':'57.12%','scene04':'71.40%','scene02':'85.68%' };
+          indicatorBar.style.left = `calc(15px + ${scenePositions[selectedScene]})`;
+
+          const thumbs = document.querySelectorAll('.scene-thumbnail-video');
+          const labels = document.querySelectorAll('.scene-thumbnail-container div');
+          const ids = ['scene05','scene06','scene07','scene09','customized','scene04','scene02'];
+          thumbs.forEach((t, i) => {
+            const active = ids[i] === selectedScene;
+            t.style.border = active ? '2px solid #363636' : '2px solid transparent';
+            labels[i].style.fontWeight = active ? 'bold' : 'normal';
+            labels[i].style.color = active ? '#363636' : '#666';
+          });
+        }
+
+        document.addEventListener('DOMContentLoaded', function(){ updateSceneThumbnailGallery('scene05'); });
+      </script>
+
+      <!-- Go2 -->
+      <div class="has-text-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
+        <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Side-by-Side Comparison: Go2 Quadruped Robot (3x Speed).</h3>
+      </div>
+
+      <div class="has-text-centered" style="margin-bottom: 1.5rem;">
+        <button class="button is-primary go2-scene-btn active" onclick="showGo2Scene('s04')" style="margin: 0 0.3rem; background-color:#363636; border-color:#363636;">Scene 01</button>
+        <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s05')" style="margin: 0 0.3rem; background-color:#dbdbdb; color:#363636; border-color:#dbdbdb;">Scene 02</button>
+        <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s07')" style="margin: 0 0.3rem; background-color:#dbdbdb; color:#363636; border-color:#dbdbdb;">Scene 03</button>
+        <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s03')" style="margin: 0 0.3rem; background-color:#dbdbdb; color:#363636; border-color:#dbdbdb;">Scene 04</button>
+        <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s01')" style="margin: 0 0.3rem; background-color:#dbdbdb; color:#363636; border-color:#dbdbdb;">Scene 05</button>
+        <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s16')" style="margin: 0 0.3rem; background-color:#dbdbdb; color:#363636; border-color:#dbdbdb;">Scene 06</button>
+        <button class="button is-primary go2-scene-btn" onclick="showGo2Scene('s14')" style="margin: 0 0.3rem; background-color:#dbdbdb; color:#363636; border-color:#dbdbdb;">Scene 07</button>
+      </div>
+
+      <div class="has-text-centered">
+        <video id="s01-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s01_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; width:85%; max-width:1200px; display:none; margin:0 auto;"></video>
+        <video id="s03-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s03_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; width:85%; max-width:1200px; display:none; margin:0 auto;"></video>
+        <video id="s04-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s04_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; width:85%; max-width:1200px; display:block; margin:0 auto;"></video>
+        <video id="s05-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s05_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; width:85%; max-width:1200px; display:none; margin:0 auto;"></video>
+        <video id="s07-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s07_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; width:85%; max-width:1200px; display:none; margin:0 auto;"></video>
+        <video id="s14-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s14_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; width:85%; max-width:1200px; display:none; margin:0 auto;"></video>
+        <video id="s16-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s16_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius:10px; width:85%; max-width:1200px; display:none; margin:0 auto;"></video>
+      </div>
+
+      <div class="has-text-centered" style="margin-top: 1rem;">
+        <div style="display: inline-block; position: relative; background-color: #f5f5f5; border-radius: 10px; padding: 15px; max-width: 800px;">
+          <div id="go2-scene-indicator-bar" style="position: absolute; top: 10px; left: calc(15px + 0%); width: 14.28%; height: 4px; background-color: #363636; border-radius: 2px; transition: left 0.3s ease;"></div>
+
+          <div style="display: flex; justify-content: space-between; gap: 8px; margin-top: 10px;">
+            <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s04')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="go2-scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s04_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid #363636;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; font-weight:bold; color:#363636;">Scene 01</div>
+            </div>
+            <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s05')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="go2-scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s05_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 02</div>
+            </div>
+            <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s07')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="go2-scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s07_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 03</div>
+            </div>
+            <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s03')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="go2-scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s03_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 04</div>
+            </div>
+            <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s01')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="go2-scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s01_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 05</div>
+            </div>
+            <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s16')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="go2-scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s16_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 06</div>
+            </div>
+            <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s14')" style="flex:1; cursor:pointer; position:relative;">
+              <video class="go2-scene-thumbnail-video" muted playsinline preload="none" loading="lazy" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s14_hq.mp4" style="width:100%; height:60px; object-fit:cover; border-radius:5px; border:2px solid transparent;"></video>
+              <div style="text-align:center; margin-top:3px; font-size:0.7rem; color:#666;">Scene 07</div>
+            </div>
           </div>
-          <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s03')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="go2-scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s03_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 04</div>
-          </div>
-          <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s01')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="go2-scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s01_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 05</div>
-          </div>
-          <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s16')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="go2-scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s16_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 06</div>
-          </div>
-          <div class="go2-scene-thumbnail-container" onclick="showGo2Scene('s14')" style="flex: 1; cursor: pointer; position: relative;">
-            <video class="go2-scene-thumbnail-video" muted playsinline src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s14_hq.mp4" style="width: 100%; height: 60px; object-fit: cover; border-radius: 5px; border: 2px solid transparent;"></video>
-            <div style="text-align: center; margin-top: 3px; font-size: 0.7rem; color: #666; font-family: 'Roboto Mono', monospace;">Scene 07</div>
+        </div>
+      </div>
+
+      <script>
+        function showGo2Scene(scene) {
+          const vids = document.querySelectorAll('.go2-scene-video');
+          vids.forEach(v => { v.style.display = 'none'; v.pause(); });
+
+          const selectedVideo = document.getElementById(scene + '-video');
+          ensureVideoReady(selectedVideo);
+          selectedVideo.style.display = 'block';
+          selectedVideo.currentTime = 0;
+          selectedVideo.play();
+
+          const buttons = document.querySelectorAll('.go2-scene-btn');
+          const order = { 's04':0,'s05':1,'s07':2,'s03':3,'s01':4,'s16':5,'s14':6 };
+          buttons.forEach((btn, i) => {
+            const active = i === order[scene];
+            btn.style.backgroundColor = active ? '#363636' : '#dbdbdb';
+            btn.style.color = active ? 'white' : '#363636';
+            btn.style.borderColor = active ? '#363636' : '#dbdbdb';
+            btn.classList.toggle('active', active);
+          });
+
+          updateGo2SceneThumbnailGallery(scene);
+        }
+
+        function updateGo2SceneThumbnailGallery(selectedScene) {
+          const indicatorBar = document.getElementById('go2-scene-indicator-bar');
+          const scenePositions = { 's04':'0%','s05':'14.28%','s07':'28.56%','s03':'42.84%','s01':'57.12%','s16':'71.40%','s14':'85.68%' };
+          indicatorBar.style.left = `calc(15px + ${scenePositions[selectedScene]})`;
+
+          const thumbs = document.querySelectorAll('.go2-scene-thumbnail-video');
+          const labels = document.querySelectorAll('.go2-scene-thumbnail-container div');
+          const ids = ['s04','s05','s07','s03','s01','s16','s14'];
+          thumbs.forEach((t, i) => {
+            const active = ids[i] === selectedScene;
+            t.style.border = active ? '2px solid #363636' : '2px solid transparent';
+            labels[i].style.fontWeight = active ? 'bold' : 'normal';
+            labels[i].style.color = active ? '#363636' : '#666';
+          });
+        }
+
+        document.addEventListener('DOMContentLoaded', function(){ updateGo2SceneThumbnailGallery('s04'); });
+      </script>
+
+      <!-- Mapless long-horizon -->
+      <div class="has-text-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
+        <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Mapless Long-horizon Urban Navigation Deployment.</h3>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <video autoplay loop muted playsinline controls preload="none" loading="lazy"
+                   data-src="static/urbanverse_videos/long_horizon_no_mask.mp4" poster="./static/videos/loading-icon.gif"
+                   style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;"></video>
           </div>
         </div>
       </div>
     </div>
-    
-    <script>
-      function showGo2Scene(scene) {
-        // Hide all Go2 videos
-        const videos = document.querySelectorAll('.go2-scene-video');
-        videos.forEach(video => {
-          video.style.display = 'none';
-          video.pause();
-        });
-        
-        // Show selected video and reset to start
-        const selectedVideo = document.getElementById(scene + '-video');
-        selectedVideo.style.display = 'block';
-        selectedVideo.currentTime = 0; // Reset to beginning
-        selectedVideo.play();
-        
-        // Update button styles
-        const buttons = document.querySelectorAll('.go2-scene-btn');
-        buttons.forEach(btn => {
-          btn.style.backgroundColor = '#dbdbdb';
-          btn.style.color = '#363636';
-          btn.style.borderColor = '#dbdbdb';
-          btn.classList.remove('active');
-        });
-        
-        // Highlight active button
-        const activeBtn = event.target;
-        if (activeBtn && activeBtn.classList.contains('go2-scene-btn')) {
-          activeBtn.style.backgroundColor = '#363636';
-          activeBtn.style.color = 'white';
-          activeBtn.style.borderColor = '#363636';
-          activeBtn.classList.add('active');
-        }
-        
-        // Update thumbnail gallery
-        updateGo2SceneThumbnailGallery(scene);
-      }
-      
-      function updateGo2SceneThumbnailGallery(selectedScene) {
-        // Update sliding indicator bar position
-        const indicatorBar = document.getElementById('go2-scene-indicator-bar');
-        const scenePositions = {
-          's04': '0%',
-          's05': '14.28%',
-          's07': '28.56%',
-          's03': '42.84%',
-          's01': '57.12%',
-          's16': '71.40%',
-          's14': '85.68%'
-        };
-        indicatorBar.style.left = `calc(15px + ${scenePositions[selectedScene]})`;
-        
-        // Update thumbnail borders and labels
-        const thumbnails = document.querySelectorAll('.go2-scene-thumbnail-video');
-        const labels = document.querySelectorAll('.go2-scene-thumbnail-container div');
-        
-        thumbnails.forEach((thumbnail, index) => {
-          const scenes = ['s04', 's05', 's07', 's03', 's01', 's16', 's14'];
-          const isActive = scenes[index] === selectedScene;
-          
-          thumbnail.style.border = isActive ? '2px solid #363636' : '2px solid transparent';
-          labels[index].style.fontWeight = isActive ? 'bold' : 'normal';
-          labels[index].style.color = isActive ? '#363636' : '#666';
-        });
-        
-        // Update button colors to match selected scene
-        updateGo2SceneButtonColors(selectedScene);
-      }
-      
-      function updateGo2SceneButtonColors(selectedScene) {
-        // Reset all buttons to inactive state
-        const buttons = document.querySelectorAll('.go2-scene-btn');
-        buttons.forEach(btn => {
-          btn.style.backgroundColor = '#dbdbdb';
-          btn.style.color = '#363636';
-          btn.style.borderColor = '#dbdbdb';
-          btn.classList.remove('active');
-        });
-        
-        // Find and highlight the correct button based on scene
-        const sceneButtonMap = {
-          's04': 0,
-          's05': 1,
-          's07': 2,
-          's03': 3,
-          's01': 4,
-          's16': 5,
-          's14': 6
-        };
-        
-        const activeButtonIndex = sceneButtonMap[selectedScene];
-        if (activeButtonIndex !== undefined && buttons[activeButtonIndex]) {
-          const activeBtn = buttons[activeButtonIndex];
-          activeBtn.style.backgroundColor = '#363636';
-          activeBtn.style.color = 'white';
-          activeBtn.style.borderColor = '#363636';
-          activeBtn.classList.add('active');
-        }
-      }
-      
-      // Initialize the Go2 gallery on page load
-      document.addEventListener('DOMContentLoaded', function() {
-        updateGo2SceneThumbnailGallery('s04');
-      });
-    </script>
-    
-    <!-- Mapless Long-horizon Urban Navigation Deployment Subsection -->
-    <div class="has-text-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
-      <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Mapless Long-horizon Urban Navigation Deployment.</h3>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
-          <video autoplay loop muted playsinline controls src="static/urbanverse_videos/long_horizon_no_mask.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover;"></video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- <footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <p>Page template borrowed from <a href="https://nerfies.github.io/"><span class="dnerf">Nerfies</span></a>, <a href="https://umi-on-legs.github.io/">UMI on Legs</a>.</p>
-    </div>
-  </div>
-</footer> -->
+  <!-- TOC visibility + active section -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tocNav = document.querySelector('.fixed-toc-nav');
+      const heroSection = document.querySelector('.hero');
 
-<script>
-// Control table of contents visibility based on scroll position
-document.addEventListener('DOMContentLoaded', function() {
-  const tocNav = document.querySelector('.fixed-toc-nav');
-  const heroSection = document.querySelector('.hero');
-  
-  if (!tocNav || !heroSection) return;
-  
-  function updateTocVisibility() {
-    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-    const scrollPosition = window.pageYOffset;
-    
-    // Show nav when scrolled past the hero section
-    if (scrollPosition > heroBottom) {
-      tocNav.classList.add('show');
-      document.body.classList.add('toc-visible');
-    } else {
-      tocNav.classList.remove('show');
-      document.body.classList.remove('toc-visible');
-    }
-  }
-  
-  function updateActiveSection() {
-    const sections = ['abstract', 'real-to-sim', 'dataset', 'craftbench', 'city-tour-collection', 'scene-distillation', 'real-world-results'];
-    const scrollPosition = window.pageYOffset + 100; // Offset for better UX
-    
-    // Reset all buttons
-    document.querySelectorAll('.toc-btn').forEach(btn => {
-      btn.classList.remove('active');
-    });
-    
-    // Find the current section
-    let currentSection = null;
-    for (let i = sections.length - 1; i >= 0; i--) {
-      const section = document.getElementById(sections[i]);
-      if (section && scrollPosition >= section.offsetTop) {
-        currentSection = sections[i];
-        break;
-      }
-    }
-    
-    // Highlight the current section's button
-    if (currentSection) {
-      const activeBtn = document.querySelector(`a[href="#${currentSection}"]`);
-      if (activeBtn) {
-        activeBtn.classList.add('active');
-      }
-    }
-  }
-  
-  // Update on scroll
-  window.addEventListener('scroll', function() {
-    updateTocVisibility();
-    updateActiveSection();
-  });
-  
-  // Initial checks
-  updateTocVisibility();
-  updateActiveSection();
-});
-</script>
+      if (!tocNav || !heroSection) return;
 
-<!-- Video Protection Script -->
-<script>
-  // Disable right-click context menu globally
-  document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    return false;
-  });
-
-  // Disable F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S
-  document.addEventListener('keydown', function(e) {
-    // F12
-    if (e.keyCode === 123) {
-      e.preventDefault();
-      return false;
-    }
-    // Ctrl+Shift+I (Developer Tools)
-    if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-      e.preventDefault();
-      return false;
-    }
-    // Ctrl+U (View Source)
-    if (e.ctrlKey && e.keyCode === 85) {
-      e.preventDefault();
-      return false;
-    }
-    // Ctrl+S (Save)
-    if (e.ctrlKey && e.keyCode === 83) {
-      e.preventDefault();
-      return false;
-    }
-    // Ctrl+A (Select All)
-    if (e.ctrlKey && e.keyCode === 65) {
-      e.preventDefault();
-      return false;
-    }
-  });
-
-  // Disable drag and drop on videos
-  document.addEventListener('DOMContentLoaded', function() {
-    const videos = document.querySelectorAll('video');
-    videos.forEach(video => {
-      video.addEventListener('dragstart', function(e) {
-        e.preventDefault();
-        return false;
-      });
-      
-      video.addEventListener('selectstart', function(e) {
-        e.preventDefault();
-        return false;
-      });
-      
-      // Additional protection for video elements
-      video.style.pointerEvents = 'auto';
-      video.setAttribute('draggable', 'false');
-      video.setAttribute('oncontextmenu', 'return false;');
-    });
-  });
-
-  // Disable text selection globally, except in BibTeX section
-  document.addEventListener('selectstart', function(e) {
-    // Allow text selection in BibTeX section
-    if (e.target.closest('#bibtex')) {
-      return true;
-    }
-    e.preventDefault();
-    return false;
-  });
-
-  // Disable drag and drop globally
-  document.addEventListener('dragover', function(e) {
-    e.preventDefault();
-  });
-
-  document.addEventListener('drop', function(e) {
-    e.preventDefault();
-  });
-
-  // Advanced Video Loading Optimization
-  document.addEventListener('DOMContentLoaded', function() {
-    // Intersection Observer for smart video loading
-    const videoObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const video = entry.target;
-          // Only load videos that are about to be viewed
-          if (video.preload === 'none' || !video.preload) {
-            video.preload = 'metadata';
-          }
-          // Start loading when 50% visible
-          if (entry.intersectionRatio >= 0.5) {
-            video.load();
-          }
-        }
-      });
-    }, {
-      rootMargin: '100px 0px', // Start loading 100px before entering viewport
-      threshold: [0, 0.25, 0.5, 0.75, 1]
-    });
-
-    // Observe all videos for lazy loading
-    document.querySelectorAll('video').forEach(video => {
-      videoObserver.observe(video);
-    });
-
-    // Preload critical videos (first visible ones)
-    const criticalVideos = [
-      document.querySelector('#beijing-video'),
-      document.querySelector('#scene05-video'),
-      document.querySelector('#s04-video'),
-      document.querySelector('#rek-video')
-    ];
-
-    criticalVideos.forEach(video => {
-      if (video) {
-        video.preload = 'metadata';
-      }
-    });
-
-    // Optimize video switching for better performance
-    const cityVideos = document.querySelectorAll('.city-video');
-    const distillationVideos = document.querySelectorAll('.distillation-video');
-    const sceneVideos = document.querySelectorAll('.scene-video');
-    const go2SceneVideos = document.querySelectorAll('.go2-scene-video');
-
-    // Preload adjacent videos when switching
-    function optimizeVideoSwitching(videos, activeIndex) {
-      videos.forEach((video, index) => {
-        if (Math.abs(index - activeIndex) <= 1) {
-          // Preload current and adjacent videos
-          video.preload = 'metadata';
+      function updateTocVisibility() {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        const scrollPosition = window.pageYOffset;
+        if (scrollPosition > heroBottom) {
+          tocNav.classList.add('show');
+          document.body.classList.add('toc-visible');
         } else {
-          // Don't preload distant videos
-          video.preload = 'none';
+          tocNav.classList.remove('show');
+          document.body.classList.remove('toc-visible');
         }
+      }
+
+      function updateActiveSection() {
+        const sections = ['abstract','real-to-sim','dataset','craftbench','city-tour-collection','scene-distillation','real-world-results'];
+        const scrollPosition = window.pageYOffset + 100;
+        document.querySelectorAll('.toc-btn').forEach(btn => btn.classList.remove('active'));
+        let current = null;
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const s = document.getElementById(sections[i]);
+          if (s && scrollPosition >= s.offsetTop) { current = sections[i]; break; }
+        }
+        if (current) {
+          const activeBtn = document.querySelector(`a[href="#${current}"]`);
+          if (activeBtn) activeBtn.classList.add('active');
+        }
+      }
+
+      window.addEventListener('scroll', () => { updateTocVisibility(); updateActiveSection(); });
+      updateTocVisibility(); updateActiveSection();
+    });
+  </script>
+
+  <!-- Video Protection (kept as in your original) -->
+  <script>
+    document.addEventListener('contextmenu', function(e){ e.preventDefault(); return false; });
+    document.addEventListener('keydown', function(e){
+      if (e.keyCode === 123) { e.preventDefault(); return false; }               // F12
+      if (e.ctrlKey && e.shiftKey && e.keyCode === 73) { e.preventDefault(); return false; } // Ctrl+Shift+I
+      if (e.ctrlKey && e.keyCode === 85) { e.preventDefault(); return false; }  // Ctrl+U
+      if (e.ctrlKey && e.keyCode === 83) { e.preventDefault(); return false; }  // Ctrl+S
+      if (e.ctrlKey && e.keyCode === 65) { e.preventDefault(); return false; }  // Ctrl+A
+    });
+    document.addEventListener('DOMContentLoaded', function(){
+      const videos = document.querySelectorAll('video');
+      videos.forEach(v => {
+        v.addEventListener('dragstart', e => { e.preventDefault(); return false; });
+        v.addEventListener('selectstart', e => { e.preventDefault(); return false; });
+        v.style.pointerEvents = 'auto';
+        v.setAttribute('draggable', 'false');
+        v.setAttribute('oncontextmenu', 'return false;');
       });
-    }
+    });
+    document.addEventListener('selectstart', function(e){ if (e.target.closest('#bibtex')) { return true; } e.preventDefault(); return false; });
+    document.addEventListener('dragover', function(e){ e.preventDefault(); });
+    document.addEventListener('drop', function(e){ e.preventDefault(); });
+  </script>
 
-    // Add optimization to existing video switching functions
-    const originalShowCityScene = window.showCityScene;
-    window.showCityScene = function(cityName) {
-      const cityIndex = ['beijing', 'losangeles', 'capetown', 'tangier'].indexOf(cityName);
-      optimizeVideoSwitching(cityVideos, cityIndex);
-      if (originalShowCityScene) originalShowCityScene(cityName);
-    };
+  <!-- PRIORITIZED LAZY LOADER + SMALL PARALLELISM QUEUE -->
+  <script>
+    (function() {
+      const maxParallel = 2;
+      const queue = [];
+      let inFlight = 0;
 
-    const originalShowDistillationScene = window.showDistillationScene;
-    window.showDistillationScene = function(sceneName) {
-      const sceneIndex = ['rek', 'sorrento', 'rek2'].indexOf(sceneName);
-      optimizeVideoSwitching(distillationVideos, sceneIndex);
-      if (originalShowDistillationScene) originalShowDistillationScene(sceneName);
-    };
+      function pump() {
+        while (inFlight < maxParallel && queue.length) {
+          const fn = queue.shift();
+          fn();
+        }
+      }
 
-    // Ensure overview video autoplay when visible (some browsers throttle second autoplay)
-    const overviewVideo = document.getElementById('overview-video');
-    if (overviewVideo) {
-      const playWhenVisible = new IntersectionObserver((entries) => {
+      function startLoad(video) {
+        if (!video || video.dataset._loading) return;
+        video.dataset._loading = "1";
+
+        queue.push(() => {
+          inFlight++;
+          if (!video.src && video.dataset.src) video.src = video.dataset.src;
+          if (video.preload === 'none') video.preload = 'metadata';
+
+          const onDone = () => {
+            video.removeEventListener('loadedmetadata', onDone);
+            video.removeEventListener('error', onDone);
+            inFlight--; pump();
+          };
+          video.addEventListener('loadedmetadata', onDone, { once: true });
+          video.addEventListener('error', onDone, { once: true });
+          video.load();
+        });
+
+        pump();
+      }
+
+      // Public helper: ensure a video is ready right before play (used by switchers)
+      window.ensureVideoReady = function(videoEl) {
+        if (!videoEl) return;
+        if (!videoEl.src && videoEl.dataset.src) {
+          videoEl.src = videoEl.dataset.src;
+          videoEl.preload = 'metadata';
+          videoEl.load();
+        }
+      };
+
+      // IO to trigger loads near viewport
+      const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            overviewVideo.play().catch(() => {});
-          } else {
-            overviewVideo.pause();
+          const v = entry.target;
+          if (entry.isIntersecting || entry.intersectionRatio > 0) {
+            startLoad(v);
+            io.unobserve(v);
           }
         });
-      }, { root: null, threshold: 0.25 });
-      playWhenVisible.observe(overviewVideo);
-    }
-  });
-</script>
+      }, { rootMargin: '600px 0px', threshold: [0, 0.25] });
 
-<!-- Citation Section -->
-<!-- <section class="section" style="background-color: #fdfaf4;">
-  <div class="container">
-    <div class="has-text-centered" style="margin-bottom: 2rem;">
-      <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Citation.</h2>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <div class="bibtex-code" id="bibtex" style="background-color: #4a4a4a; border: 1px solid #666; border-radius: 8px; padding: 20px; margin: 0 auto; max-width: 1200px; position: relative;">
-          <div class="bibtex-title" style="font-family: 'Roboto Mono', monospace; font-weight: bold; font-size: 1.1rem; margin-bottom: 15px; color: white;">BibTeX</div>
-          <pre style="margin: 0; overflow-x: auto; background: transparent; border: none; padding: 0;"><code style="font-family: 'Roboto Mono', monospace; font-size: 0.9rem; color: white; background: transparent !important; border: none; padding: 0; white-space: pre; word-break: normal;">@article{urbanverse2025,
-  title   = {UrbanVerse: Scaling Urban Simulation by Watching City-Tour Videos},
-  author  = {Liu, Mingxuan and He, Honglin and Ricci, Elisa and Wu, Wayne and Zhou, Bolei},
-  journal = {},
-  year    = {2025}
-}</code></pre>
-          <button onclick="copyBibtex()" style="position: absolute; top: 10px; right: 10px; background-color: #363636; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-family: 'Roboto Mono', monospace; font-size: 0.8rem; cursor: pointer;" onmouseover="this.style.backgroundColor='#000';" onmouseout="this.style.backgroundColor='#363636';">Copy</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- <script>
-function copyBibtex() {
-  const bibtexText = `@article{urbanverse2025,
-  title   = {UrbanVerse: Scaling Urban Simulation by Watching City-Tour Videos},
-  author  = {Liu, Mingxuan and He, Honglin and Ricci, Elisa and Wu, Wayne and Zhou, Bolei},
-  journal = {},
-  year    = {2025}
-}`;
-  
-  navigator.clipboard.writeText(bibtexText).then(function() {
-    const button = event.target;
-    const originalText = button.textContent;
-    button.textContent = 'Copied!';
-    button.style.backgroundColor = '#28a745';
-    // Show toast
-    const toast = document.getElementById('copy-toast');
-    if (toast) {
-      toast.style.display = 'block';
-      toast.style.opacity = '1';
-      setTimeout(function() {
-        toast.style.opacity = '0';
-        setTimeout(function(){ toast.style.display = 'none'; }, 300);
-      }, 1500);
-    }
-    setTimeout(function() {
-      button.textContent = originalText;
-      button.style.backgroundColor = '#363636';
-    }, 2000);
-  }).catch(function(err) {
-    console.error('Could not copy text: ', err);
-  });
-}
-</script> -->
-
-<!-- <div id="copy-toast" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); color: white; padding: 8px 12px; border-radius: 4px; font-family: 'Roboto Mono', monospace; font-size: 0.9rem; display: none; opacity: 0; transition: opacity 0.3s ease; z-index: 2000;">Copied to clipboard</div> -->
+      document.addEventListener('DOMContentLoaded', () => {
+        // Observe all non-hero videos that use data-src
+        document.querySelectorAll('video[data-src]').forEach(v => {
+          const rect = v.getBoundingClientRect();
+          const vh = (window.innerHeight || document.documentElement.clientHeight);
+          const aboveTheFold = rect.top < vh;
+          if (aboveTheFold) {
+            startLoad(v); // boost above-the-fold
+          } else {
+            io.observe(v);
+          }
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
