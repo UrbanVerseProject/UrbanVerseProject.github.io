@@ -22,6 +22,8 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <link rel="preload" as="video" href="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4" crossorigin fetchpriority="high">
+  <link rel="preload" as="video" href="./static/urbanverse_videos/long_teaser_v9.mp4" type="video/mp4" fetchpriority="high">
   
   <style>
     body {
@@ -271,17 +273,26 @@
 
   <section class="hero is-link is-fullheight video" id="hero" style="overflow: hidden; position:relative;">
     <div class="hero-video" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 101%; height: 101%;">
-      <video playsinline autoplay muted loop preload="auto" loading="eager" style="width: 100%; height: 100%; object-fit: cover;">
-        <source src="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4">
+      <video class="hero-video-el" playsinline autoplay muted loop preload="auto" loading="eager" fetchpriority="high" poster="./static/urbanverse_images/hero_poster.png" style="width: 100%; height: 100%; object-fit: cover; background-color: #000;">
+        <source src="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4" fetchpriority="high">
       </video>
     </div>
     <div class="hero-video is-hidden-tablet is-inline-block-mobile"
       style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 101%; height: 101%;">
-      <video playsinline autoplay muted loop preload="auto" loading="eager" style="width: 100%; height: 100%; object-fit: cover;">
-        <source src="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4">
+      <video class="hero-video-el" playsinline autoplay muted loop preload="auto" loading="eager" fetchpriority="high" poster="./static/urbanverse_images/hero_poster.png" style="width: 100%; height: 100%; object-fit: cover; background-color: #000;">
+        <source src="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4" fetchpriority="high">
       </video>
     </div>
     <div class="overlay"></div>
+    <!-- Hero loading overlay -->
+    <div id="hero-loading" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+      <div style="background: rgba(0,0,0,0.5); backdrop-filter: blur(6px); border-radius: 10px; padding: 10px 14px; min-width: 200px; text-align: center;">
+        <div style="color:#fff; font-family: 'Roboto Mono', monospace; font-size: 0.9rem; margin-bottom: 6px;">Loading video… <span id="hero-progress-text">0%</span></div>
+        <div style="height: 6px; width: 220px; background: rgba(255,255,255,0.25); border-radius: 4px; overflow: hidden;">
+          <div id="hero-progress-bar" style="height:100%; width:0%; background:#ffffff;"></div>
+        </div>
+      </div>
+    </div>
 
   <div class="hero-body">
     <div style="position: absolute; bottom: 60px; left: 60px; background-color: rgba(0, 0, 0, 0.4); padding: 15px 25px; border-radius: 12px; backdrop-filter: blur(10px); max-width: 1200px; min-width: 750px;">
@@ -351,8 +362,8 @@
     <div class="columns is-centered">
       <div class="column is-full">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
-          <video autoplay muted loop playsinline controls controlslist="nodownload" oncontextmenu="return false;"
-                 preload="metadata" loading="lazy"
+          <video id="overview-video" autoplay muted loop playsinline controls controlslist="nodownload" oncontextmenu="return false;"
+                 preload="metadata" loading="eager" fetchpriority="high"
                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; pointer-events: auto;"
                  draggable="false">
             <source src="./static/urbanverse_videos/long_teaser_v9.mp4" type="video/mp4">
@@ -609,7 +620,7 @@
     
     <div class="columns is-centered" style="margin-bottom: 0.2rem;">
       <div class="column is-half is-centered has-text-centered">
-        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/real_videos/masked_beijing_real.mp4.mov" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
+        <video autoplay loop muted playsinline  src="./static/urbanverse_videos/real_videos/masked_beijing_real.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; margin: 0.1rem 0.5rem;"></video>
         <p class="video-title" style="font-weight: normal; font-size: 1rem; margin-top: 0.2rem; color: #333;">Input Video</p>
       </div>
       <div class="column is-half is-centered has-text-centered">
@@ -736,7 +747,7 @@
           <h3 class="title is-5" style="background-color: black; color: white; padding: 6px 12px; display: inline-block; margin: 0; font-weight: normal; font-size: 1rem;">Object Assets Walkthrough.</h3>
         </div>
         <div class="has-text-centered">
-          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="metadata" loading="lazy" src="static/urbanverse_videos/UrbanVerse-100K-Database_Videos-and-Distribution/UrbanVerse-100K-Flythrough_Videos.mov" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 100%; max-width: 100%;"></video>
+          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="metadata" loading="lazy" src="static/urbanverse_videos/UrbanVerse-100K-Database_Videos-and-Distribution/UrbanVerse-100K-Flythrough_Videos.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 100%; max-width: 100%;"></video>
         </div>
       </div>
       
@@ -1372,6 +1383,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Video Protection Script -->
 <script>
+  // Hero loading progress (best-effort using progress and canplay events)
+  document.addEventListener('DOMContentLoaded', function() {
+    const heroVideos = document.querySelectorAll('.hero-video-el');
+    const overlay = document.getElementById('hero-loading');
+    const bar = document.getElementById('hero-progress-bar');
+    const text = document.getElementById('hero-progress-text');
+    if (!heroVideos.length || !overlay || !bar || !text) return;
+
+    let maxPercent = 0;
+    function updateProgress(pct) {
+      const clamped = Math.max(maxPercent, Math.min(99, Math.floor(pct)));
+      maxPercent = clamped;
+      bar.style.width = clamped + '%';
+      text.textContent = clamped + '%';
+    }
+
+    function hideOverlay() {
+      bar.style.width = '100%';
+      text.textContent = '100%';
+      setTimeout(() => { overlay.style.display = 'none'; }, 150);
+    }
+
+    heroVideos.forEach(v => {
+      // Some browsers fire progress; compute buffered ratio if duration known
+      v.addEventListener('progress', () => {
+        try {
+          if (v.duration && v.buffered && v.buffered.length) {
+            const end = v.buffered.end(v.buffered.length - 1);
+            const pct = (end / v.duration) * 100;
+            updateProgress(pct);
+          }
+        } catch (_) {}
+      });
+      // When enough data to start playing
+      v.addEventListener('loadeddata', () => updateProgress(25));
+      v.addEventListener('canplay', () => updateProgress(60));
+      v.addEventListener('canplaythrough', () => updateProgress(90));
+      v.addEventListener('playing', hideOverlay, { once: true });
+      v.addEventListener('error', () => { text.textContent = 'Error'; });
+    });
+  });
+
   // Disable right-click context menu globally
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
@@ -1521,6 +1574,21 @@ document.addEventListener('DOMContentLoaded', function() {
       optimizeVideoSwitching(distillationVideos, sceneIndex);
       if (originalShowDistillationScene) originalShowDistillationScene(sceneName);
     };
+
+    // Ensure overview video autoplay when visible (some browsers throttle second autoplay)
+    const overviewVideo = document.getElementById('overview-video');
+    if (overviewVideo) {
+      const playWhenVisible = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            overviewVideo.play().catch(() => {});
+          } else {
+            overviewVideo.pause();
+          }
+        });
+      }, { root: null, threshold: 0.25 });
+      playWhenVisible.observe(overviewVideo);
+    }
   });
 </script>
 
