@@ -22,8 +22,6 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
-  <link rel="preload" as="video" href="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4" fetchpriority="high">
-  <link rel="preload" as="video" href="./static/urbanverse_videos/long_teaser_v9.mp4" type="video/mp4" fetchpriority="high">
   
   <style>
     body {
@@ -273,13 +271,13 @@
 
   <section class="hero is-link is-fullheight video" id="hero" style="overflow: hidden; position:relative;">
     <div class="hero-video" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 101%; height: 101%;">
-      <video playsinline autoplay muted loop preload="auto" loading="eager" fetchpriority="high" style="width: 100%; height: 100%; object-fit: cover;">
+      <video playsinline autoplay muted loop preload="auto" loading="eager" style="width: 100%; height: 100%; object-fit: cover;">
         <source src="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4">
       </video>
     </div>
     <div class="hero-video is-hidden-tablet is-inline-block-mobile"
       style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 101%; height: 101%;">
-      <video playsinline autoplay muted loop preload="auto" loading="eager" fetchpriority="high" style="width: 100%; height: 100%; object-fit: cover;">
+      <video playsinline autoplay muted loop preload="auto" loading="eager" style="width: 100%; height: 100%; object-fit: cover;">
         <source src="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4">
       </video>
     </div>
@@ -354,7 +352,7 @@
       <div class="column is-full">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
           <video autoplay muted loop playsinline controls controlslist="nodownload" oncontextmenu="return false;"
-                 preload="metadata" loading="eager" fetchpriority="high"
+                 preload="metadata" loading="lazy"
                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; pointer-events: auto;"
                  draggable="false">
             <source src="./static/urbanverse_videos/long_teaser_v9.mp4" type="video/mp4">
