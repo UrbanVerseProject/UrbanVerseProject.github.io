@@ -1035,16 +1035,41 @@
       }, { rootMargin: '600px 0px', threshold: [0, 0.25] });
 
       document.addEventListener('DOMContentLoaded', () => {
-        // Observe all non-hero videos that use data-src
+        // Define section order priority (after hero and overview)
+        const sectionOrder = [
+          'abstract',               // overview section
+          'real-to-sim',
+          'dataset',
+          'craftbench',
+          'city-tour-collection',
+          'scene-distillation',
+          'real-world-results'
+        ];
+
+        // Enqueue loads in section order (respects small parallelism)
+        sectionOrder.forEach(sectionId => {
+          const sectionEl = document.getElementById(sectionId);
+          if (!sectionEl) return;
+          const vids = sectionEl.querySelectorAll('video[data-src]');
+          vids.forEach(v => {
+            // If already above the fold, load immediately; otherwise enqueue in order
+            const rect = v.getBoundingClientRect();
+            const vh = (window.innerHeight || document.documentElement.clientHeight);
+            const aboveTheFold = rect.top < vh;
+            if (aboveTheFold) {
+              startLoad(v);
+            } else {
+              // Queue by observing, but sorted by section order as we iterate
+              io.observe(v);
+            }
+          });
+        });
+
+        // As a safety net, observe any remaining videos with data-src not inside known sections
         document.querySelectorAll('video[data-src]').forEach(v => {
-          const rect = v.getBoundingClientRect();
-          const vh = (window.innerHeight || document.documentElement.clientHeight);
-          const aboveTheFold = rect.top < vh;
-          if (aboveTheFold) {
-            startLoad(v); // boost above-the-fold
-          } else {
-            io.observe(v);
-          }
+          if (v.dataset._loading) return;
+          // If not already observed or started, observe
+          io.observe(v);
         });
       });
     })();
