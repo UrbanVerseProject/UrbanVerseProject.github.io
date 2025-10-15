@@ -273,26 +273,17 @@
 
   <section class="hero is-link is-fullheight video" id="hero" style="overflow: hidden; position:relative;">
     <div class="hero-video" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 101%; height: 101%;">
-      <video class="hero-video-el" playsinline autoplay muted loop preload="auto" loading="eager" fetchpriority="high" poster="./static/urbanverse_images/hero_poster.png" style="width: 100%; height: 100%; object-fit: cover; background-color: #000;">
+      <video playsinline autoplay muted loop preload="auto" loading="eager" fetchpriority="high" style="width: 100%; height: 100%; object-fit: cover;">
         <source src="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4" fetchpriority="high">
       </video>
     </div>
     <div class="hero-video is-hidden-tablet is-inline-block-mobile"
       style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 101%; height: 101%;">
-      <video class="hero-video-el" playsinline autoplay muted loop preload="auto" loading="eager" fetchpriority="high" poster="./static/urbanverse_images/hero_poster.png" style="width: 100%; height: 100%; object-fit: cover; background-color: #000;">
+      <video playsinline autoplay muted loop preload="auto" loading="eager" fetchpriority="high" style="width: 100%; height: 100%; object-fit: cover;">
         <source src="./static/urbanverse_videos/short_teaser_v10.mp4" type="video/mp4" fetchpriority="high">
       </video>
     </div>
     <div class="overlay"></div>
-    <!-- Hero loading overlay -->
-    <div id="hero-loading" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;">
-      <div style="background: rgba(0,0,0,0.5); backdrop-filter: blur(6px); border-radius: 10px; padding: 10px 14px; min-width: 200px; text-align: center;">
-        <div style="color:#fff; font-family: 'Roboto Mono', monospace; font-size: 0.9rem; margin-bottom: 6px;">Loading video… <span id="hero-progress-text">0%</span></div>
-        <div style="height: 6px; width: 220px; background: rgba(255,255,255,0.25); border-radius: 4px; overflow: hidden;">
-          <div id="hero-progress-bar" style="height:100%; width:0%; background:#ffffff;"></div>
-        </div>
-      </div>
-    </div>
 
   <div class="hero-body">
     <div style="position: absolute; bottom: 60px; left: 60px; background-color: rgba(0, 0, 0, 0.4); padding: 15px 25px; border-radius: 12px; backdrop-filter: blur(10px); max-width: 1200px; min-width: 750px;">
@@ -1383,48 +1374,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Video Protection Script -->
 <script>
-  // Hero loading progress (best-effort using progress and canplay events)
-  document.addEventListener('DOMContentLoaded', function() {
-    const heroVideos = document.querySelectorAll('.hero-video-el');
-    const overlay = document.getElementById('hero-loading');
-    const bar = document.getElementById('hero-progress-bar');
-    const text = document.getElementById('hero-progress-text');
-    if (!heroVideos.length || !overlay || !bar || !text) return;
-
-    let maxPercent = 0;
-    function updateProgress(pct) {
-      const clamped = Math.max(maxPercent, Math.min(99, Math.floor(pct)));
-      maxPercent = clamped;
-      bar.style.width = clamped + '%';
-      text.textContent = clamped + '%';
-    }
-
-    function hideOverlay() {
-      bar.style.width = '100%';
-      text.textContent = '100%';
-      setTimeout(() => { overlay.style.display = 'none'; }, 150);
-    }
-
-    heroVideos.forEach(v => {
-      // Some browsers fire progress; compute buffered ratio if duration known
-      v.addEventListener('progress', () => {
-        try {
-          if (v.duration && v.buffered && v.buffered.length) {
-            const end = v.buffered.end(v.buffered.length - 1);
-            const pct = (end / v.duration) * 100;
-            updateProgress(pct);
-          }
-        } catch (_) {}
-      });
-      // When enough data to start playing
-      v.addEventListener('loadeddata', () => updateProgress(25));
-      v.addEventListener('canplay', () => updateProgress(60));
-      v.addEventListener('canplaythrough', () => updateProgress(90));
-      v.addEventListener('playing', hideOverlay, { once: true });
-      v.addEventListener('error', () => { text.textContent = 'Error'; });
-    });
-  });
-
   // Disable right-click context menu globally
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
