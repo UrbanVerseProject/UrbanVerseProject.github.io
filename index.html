@@ -316,7 +316,7 @@
        
        <!-- Links Section -->
        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; width: 100%;">
-         <a href="" target="_blank" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important; padding: 8px 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; flex: 0.8; text-align: left;" onmouseover="this.style.borderBottomColor='white'; this.style.textDecoration='underline';" onmouseout="this.style.borderBottomColor='transparent'; this.style.textDecoration='none';">[Paper]</a>
+         <a href="https://arxiv.org/abs/2510.15018" target="_blank" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important; padding: 8px 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; flex: 0.8; text-align: left;" onmouseover="this.style.borderBottomColor='white'; this.style.textDecoration='underline';" onmouseout="this.style.borderBottomColor='transparent'; this.style.textDecoration='none';">[Paper]</a>
          <a href="https://github.com/OatmealLiu/UrbanVerse" target="_blank" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important; padding: 8px 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; flex: 1.4; text-align: center;" onmouseover="this.style.borderBottomColor='white'; this.style.textDecoration='underline';" onmouseout="this.style.borderBottomColor='transparent'; this.style.textDecoration='none';">[UrbanVerse-100K] (coming soon)</a>
          <a href="https://github.com/OatmealLiu/UrbanVerse" target="_blank" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-family: 'Roboto Mono', monospace !important; padding: 8px 0; border-bottom: 2px solid transparent; transition: border-color 0.3s ease; flex: 0.8; text-align: right;" onmouseover="this.style.borderBottomColor='white'; this.style.textDecoration='underline';" onmouseout="this.style.borderBottomColor='transparent'; this.style.textDecoration='none';">[Code] (coming soon)</a>
        </div>
@@ -1640,8 +1640,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!-- Citation Section -->
-<!-- <section class="section" style="background-color: #fdfaf4;">
-  <div class="container">
+ <section class="section" style="background-color: #fdfaf4;">
+    <div class="container">
     <div class="has-text-centered" style="margin-bottom: 2rem;">
       <h2 class="title is-4" style="background-color: black; color: white; padding: 8px 16px; display: inline-block; margin: 0; font-weight: normal; font-size: 1.2rem;">Citation.</h2>
     </div>
@@ -1649,26 +1649,32 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="column is-full">
         <div class="bibtex-code" id="bibtex" style="background-color: #4a4a4a; border: 1px solid #666; border-radius: 8px; padding: 20px; margin: 0 auto; max-width: 1200px; position: relative;">
           <div class="bibtex-title" style="font-family: 'Roboto Mono', monospace; font-weight: bold; font-size: 1.1rem; margin-bottom: 15px; color: white;">BibTeX</div>
-          <pre style="margin: 0; overflow-x: auto; background: transparent; border: none; padding: 0;"><code style="font-family: 'Roboto Mono', monospace; font-size: 0.9rem; color: white; background: transparent !important; border: none; padding: 0; white-space: pre; word-break: normal;">@article{urbanverse2025,
-  title   = {UrbanVerse: Scaling Urban Simulation by Watching City-Tour Videos},
-  author  = {Liu, Mingxuan and He, Honglin and Ricci, Elisa and Wu, Wayne and Zhou, Bolei},
-  journal = {},
-  year    = {2025}
+          <pre style="margin: 0; overflow-x: auto; background: transparent; border: none; padding: 0;"><code style="font-family: 'Roboto Mono', monospace; font-size: 0.9rem; color: white; background: transparent !important; border: none; padding: 0; white-space: pre; word-break: normal;">@misc{liu2025urbanversescalingurbansimulation,
+          title={UrbanVerse: Scaling Urban Simulation by Watching City-Tour Videos}, 
+          author={Mingxuan Liu and Honglin He and Elisa Ricci and Wayne Wu and Bolei Zhou},
+          year={2025},
+          eprint={2510.15018},
+          archivePrefix={arXiv},
+          primaryClass={cs.CV},
+          url={https://arxiv.org/abs/2510.15018}, 
 }</code></pre>
           <button onclick="copyBibtex()" style="position: absolute; top: 10px; right: 10px; background-color: #363636; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-family: 'Roboto Mono', monospace; font-size: 0.8rem; cursor: pointer;" onmouseover="this.style.backgroundColor='#000';" onmouseout="this.style.backgroundColor='#363636';">Copy</button>
         </div>
       </div>
     </div>
   </div>
-</section> -->
+</section>
 
-<!-- <script>
+<script>
 function copyBibtex() {
-  const bibtexText = `@article{urbanverse2025,
-  title   = {UrbanVerse: Scaling Urban Simulation by Watching City-Tour Videos},
-  author  = {Liu, Mingxuan and He, Honglin and Ricci, Elisa and Wu, Wayne and Zhou, Bolei},
-  journal = {},
-  year    = {2025}
+  const bibtexText = `@misc{liu2025urbanversescalingurbansimulation,
+    title={UrbanVerse: Scaling Urban Simulation by Watching City-Tour Videos}, 
+    author={Mingxuan Liu and Honglin He and Elisa Ricci and Wayne Wu and Bolei Zhou},
+    year={2025},
+    eprint={2510.15018},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV},
+    url={https://arxiv.org/abs/2510.15018}, 
 }`;
   
   navigator.clipboard.writeText(bibtexText).then(function() {
@@ -1694,7 +1700,7 @@ function copyBibtex() {
     console.error('Could not copy text: ', err);
   });
 }
-</script> -->
+</script>
 
 <!-- <div id="copy-toast" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); color: white; padding: 8px 12px; border-radius: 4px; font-family: 'Roboto Mono', monospace; font-size: 0.9rem; display: none; opacity: 0; transition: opacity 0.3s ease; z-index: 2000;">Copied to clipboard</div> -->
 
