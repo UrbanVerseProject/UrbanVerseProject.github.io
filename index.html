@@ -384,6 +384,13 @@
     const selectedVideo = document.getElementById(scene + '-video');
     if (selectedVideo) {
       selectedVideo.style.display = 'block';
+      
+      // Load video if it has data-src (lazy loading)
+      if (selectedVideo.dataset.src && !selectedVideo.src) {
+        selectedVideo.src = selectedVideo.dataset.src;
+        selectedVideo.preload = 'metadata';
+      }
+      
       selectedVideo.play();
     }
     
@@ -471,9 +478,9 @@
       <div class="column is-full">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
           <video id="beijing-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="metadata" src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_beijing_twin.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: block;"></video>
-          <video id="losangeles-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="none" src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_los_angeles_twin.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
-          <video id="capetown-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="none" src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_capetown_twin.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
-          <video id="tangier-video" class="city-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="none" src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_tangier_twin.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
+          <video id="losangeles-video" class="city-video" loop muted playsinline controls controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_los_angeles_twin.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
+          <video id="capetown-video" class="city-video" loop muted playsinline controls controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_capetown_twin.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
+          <video id="tangier-video" class="city-video" loop muted playsinline controls controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/UrbanVerse-Gen-Scene_Videos/new_tangier_twin.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
         </div>
       </div>
     </div>
@@ -518,6 +525,13 @@
         // Show selected video and reset to start
         const selectedVideo = document.getElementById(city + '-video');
         selectedVideo.style.display = 'block';
+        
+        // Load video if it has data-src (lazy loading)
+        if (selectedVideo.dataset.src && !selectedVideo.src) {
+          selectedVideo.src = selectedVideo.dataset.src;
+          selectedVideo.preload = 'metadata';
+        }
+        
         selectedVideo.currentTime = 0; // Reset to beginning
         selectedVideo.play();
         
@@ -903,8 +917,8 @@
     <div class="columns is-centered">
       <div class="column is-full">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
-           <video id="sorrento-video" class="distillation-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="none" src="static/urbanverse_videos/recon_videos_3x/sorrento_dirty.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
-           <video id="rek2-video" class="distillation-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="none" src="static/urbanverse_videos/recon_videos_3x/rek2_dirty.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
+           <video id="sorrento-video" class="distillation-video" loop muted playsinline controls controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/recon_videos_3x/sorrento_dirty.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
+           <video id="rek2-video" class="distillation-video" loop muted playsinline controls controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/recon_videos_3x/rek2_dirty.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: none;"></video>
           <video id="rek-video" class="distillation-video" autoplay loop muted playsinline controls controlslist="nodownload" preload="metadata"  src="static/urbanverse_videos/recon_videos_3x/rek_dirty.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover; display: block;"></video>
         </div>
       </div>
@@ -970,13 +984,13 @@
     
     <!-- Video Container -->
     <div class="has-text-centered">
-        <video id="scene02-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s02_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-        <video id="scene04-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s04_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+        <video id="scene02-video" class="scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s02_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+        <video id="scene04-video" class="scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s04_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
         <video id="scene05-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="metadata" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s05_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: block; margin: 0 auto;"></video>
-        <video id="scene06-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s06_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-        <video id="scene07-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s07_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-        <video id="scene09-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s09_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-        <video id="customized-video" class="scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_customized_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+        <video id="scene06-video" class="scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s06_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+        <video id="scene07-video" class="scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s07_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+        <video id="scene09-video" class="scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_s09_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+        <video id="customized-video" class="scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_COCO_3x/coco_sbs_v2_customized_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
     </div>
     
     <!-- Preview Gallery -->
@@ -1031,6 +1045,13 @@
         // Show selected video and reset to start
         const selectedVideo = document.getElementById(scene + '-video');
         selectedVideo.style.display = 'block';
+        
+        // Load video if it has data-src (lazy loading)
+        if (selectedVideo.dataset.src && !selectedVideo.src) {
+          selectedVideo.src = selectedVideo.dataset.src;
+          selectedVideo.preload = 'metadata';
+        }
+        
         selectedVideo.currentTime = 0; // Reset to beginning
         selectedVideo.play();
         
@@ -1142,13 +1163,13 @@
     
     <!-- Go2 Video Container -->
     <div class="has-text-centered">
-      <video id="s01-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s01_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="s03-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s03_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+      <video id="s01-video" class="go2-scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s01_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+      <video id="s03-video" class="go2-scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s03_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
       <video id="s04-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="metadata" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s04_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: block; margin: 0 auto;"></video>
-      <video id="s05-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s05_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="s07-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s07_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="s14-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s14_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
-      <video id="s16-video" class="go2-scene-video" autoplay loop muted playsinline controlslist="nodownload" preload="none" src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s16_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+      <video id="s05-video" class="go2-scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s05_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+      <video id="s07-video" class="go2-scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s07_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+      <video id="s14-video" class="go2-scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s14_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
+      <video id="s16-video" class="go2-scene-video" loop muted playsinline controlslist="nodownload" preload="none" data-src="static/urbanverse_videos/SideBySide_Go2_3x/go2_sbs_v2_s16_hq.mp4" poster="./static/videos/loading-icon.gif" style="border-radius: 10px; width: 85%; max-width: 1200px; display: none; margin: 0 auto;"></video>
     </div>
     
     <!-- Go2 Preview Gallery -->
@@ -1203,6 +1224,13 @@
         // Show selected video and reset to start
         const selectedVideo = document.getElementById(scene + '-video');
         selectedVideo.style.display = 'block';
+        
+        // Load video if it has data-src (lazy loading)
+        if (selectedVideo.dataset.src && !selectedVideo.src) {
+          selectedVideo.src = selectedVideo.dataset.src;
+          selectedVideo.preload = 'metadata';
+        }
+        
         selectedVideo.currentTime = 0; // Reset to beginning
         selectedVideo.play();
         
