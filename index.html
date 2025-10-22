@@ -942,7 +942,7 @@
     <div class="columns is-centered">
       <div class="column is-full">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
-          <video autoplay loop muted playsinline controls controlslist="nodownload" preload="metadata" src="static/urbanverse_videos/UrbanVerse-Policy-Real-World-Deployment-Videos/Zero-shot-Sim-to-real-Generalization-Results_Video.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover;"></video>
+          <video loop muted playsinline controls controlslist="nodownload" preload="none" data-userload="1" data-src="static/urbanverse_videos/UrbanVerse-Policy-Real-World-Deployment-Videos/Zero-shot-Sim-to-real-Generalization-Results_Video.mp4" poster="./static/urbanverse_images/thumbnail_zeroshot.png" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover;"></video>
         </div>
       </div>
     </div>
@@ -1298,7 +1298,7 @@
     <div class="columns is-centered">
       <div class="column is-full">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: none; outline: none;">
-          <video autoplay loop muted playsinline controls src="static/urbanverse_videos/long_horizon_no_mask.mp4" poster="./static/videos/loading-icon.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover;"></video>
+          <video loop muted playsinline controls preload="none" data-userload="1" data-src="static/urbanverse_videos/long_horizon_no_mask.mp4" poster="./static/urbanverse_images/thumbnail_long_hori_nomask.png" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 0; outline: none; object-fit: cover;"></video>
         </div>
       </div>
     </div>
@@ -1519,8 +1519,8 @@ document.addEventListener('DOMContentLoaded', function() {
       threshold: 0.15
     });
 
-    // Observe only videos that declare data-src (skip already-sourced videos)
-    document.querySelectorAll('video[data-src]').forEach(video => {
+    // Observe only videos that declare data-src and are not user-initiated (skip data-userload)
+    document.querySelectorAll('video[data-src]:not([data-userload])').forEach(video => {
       if (video.dataset._hydrated === '1') return;
       videoObserver.observe(video);
     });
@@ -1593,6 +1593,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const distillationVideos = document.querySelectorAll('.distillation-video');
     const sceneVideos = document.querySelectorAll('.scene-video');
     const go2SceneVideos = document.querySelectorAll('.go2-scene-video');
+
+    // User-triggered loader: hydrate and play on first user interaction for videos with data-userload
+    document.querySelectorAll('video[data-userload][data-src]').forEach(v => {
+      const onUserPlay = () => {
+        if (!v.src) {
+          v.src = v.dataset.src;
+        }
+        if (!v.preload || v.preload === 'none') {
+          v.preload = 'metadata';
+        }
+        // Attempt to play after source set; ignore promise rejection silently
+        const p = v.play && v.play();
+        if (p && typeof p.catch === 'function') {
+          p.catch(() => {});
+        }
+        v.removeEventListener('play', onUserPlay);
+        v.removeEventListener('click', onUserPlay);
+      };
+      v.addEventListener('play', onUserPlay, { once: true });
+      v.addEventListener('click', onUserPlay, { once: true });
+    });
 
     // Preload adjacent videos when switching
     function optimizeVideoSwitching(videos, activeIndex) {
