@@ -52,12 +52,18 @@ find docs/ -name "*.html" -type f -exec sed -i \
   -e 's|<link rel="canonical" href="https://[^"]*github\.io[^"]*" />||g' \
   {} \;
 
-# Convert any absolute paths starting with /docs/ to relative
+# Fix paths to work from /docs/ subdirectory
+# Convert root-relative paths (starting with /) to relative paths (starting with ./)
+# But keep paths that are already relative or absolute URLs
 find docs/ -name "*.html" -type f -exec sed -i '' \
+  -e 's|href="/\([^h][^t][^t][^p]\)|href="./\1|g' \
+  -e 's|src="/\([^h][^t][^t][^p]\)|src="./\1|g' \
   -e 's|href="/docs/|href="./|g' \
   -e 's|src="/docs/|src="./|g' \
   {} \; 2>/dev/null || \
 find docs/ -name "*.html" -type f -exec sed -i \
+  -e 's|href="/\([^h][^t][^t][^p]\)|href="./\1|g' \
+  -e 's|src="/\([^h][^t][^t][^p]\)|src="./\1|g' \
   -e 's|href="/docs/|href="./|g' \
   -e 's|src="/docs/|src="./|g' \
   {} \;

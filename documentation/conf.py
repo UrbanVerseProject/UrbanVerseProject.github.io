@@ -233,8 +233,9 @@ html_show_sphinx = False
 html_last_updated_fmt = ""  # to reveal the build date in the pages meta
 
 # Fix paths for GitHub Pages deployment
-# Don't set html_baseurl - it causes absolute URLs
-# html_baseurl = ""  # Leave empty for relative paths
+# Don't set html_baseurl - we want relative paths that work from /docs/ subdirectory
+# When GitHub Pages serves from root, /docs/ will be accessible and relative paths will work
+html_baseurl = ""  # Empty for relative paths
 # Ensure all paths are relative
 html_use_index = True
 
