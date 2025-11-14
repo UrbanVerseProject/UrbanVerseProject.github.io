@@ -53,19 +53,35 @@ find docs/ -name "*.html" -type f -exec sed -i \
   {} \;
 
 # Fix paths to work from /docs/ subdirectory
-# Convert root-relative paths (starting with /) to relative paths (starting with ./)
-# But keep paths that are already relative or absolute URLs
+# Convert root-relative paths (starting with /) to relative paths
+# Fix canonical URLs and data-url_root
 find docs/ -name "*.html" -type f -exec sed -i '' \
   -e 's|href="/\([^h][^t][^t][^p]\)|href="./\1|g' \
   -e 's|src="/\([^h][^t][^t][^p]\)|src="./\1|g' \
   -e 's|href="/docs/|href="./|g' \
   -e 's|src="/docs/|src="./|g' \
+  -e 's|href="./docs/|href="./|g' \
+  -e 's|data-url_root="[^"]*"|data-url_root="./"|g' \
+  -e 's|<link rel="canonical" href="[^"]*docs/[^"]*" />||g' \
   {} \; 2>/dev/null || \
 find docs/ -name "*.html" -type f -exec sed -i \
   -e 's|href="/\([^h][^t][^t][^p]\)|href="./\1|g' \
   -e 's|src="/\([^h][^t][^t][^p]\)|src="./\1|g' \
   -e 's|href="/docs/|href="./|g' \
   -e 's|src="/docs/|src="./|g' \
+  -e 's|href="./docs/|href="./|g' \
+  -e 's|data-url_root="[^"]*"|data-url_root="./"|g' \
+  -e 's|<link rel="canonical" href="[^"]*docs/[^"]*" />||g' \
+  {} \;
+
+# Fix JavaScript files that might have hardcoded paths
+find docs/ -name "*.js" -type f -exec sed -i '' \
+  -e 's|"/docs/|"./|g' \
+  -e "s|'/docs/|'./|g" \
+  {} \; 2>/dev/null || \
+find docs/ -name "*.js" -type f -exec sed -i \
+  -e 's|"/docs/|"./|g' \
+  -e "s|'/docs/|'./|g" \
   {} \;
 
 echo "✅ Documentation updated successfully!"
