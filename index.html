@@ -9,13 +9,7 @@
   <link rel="stylesheet" href="style.css">
 
   <link rel="preload" as="video" href="./static/urbanverse_videos/long_teaser_v10.mp4" type="video/mp4" fetchpriority="high">
-
-  <link rel="prefetch" href="./mobile_manipulator.html" as="document">
-  <link rel="prefetch" href="./realworld_sidebyside.html" as="document">
-  <link rel="prefetch" href="./scene_with_dynas.html" as="document">
-  <link rel="prefetch" href="./urbanverse_1k.html" as="document">
-  <link rel="prefetch" href="./urbanverse_scenes.html" as="document">
-  <link rel="prefetch" href="./vr_interaction.html" as="document">
+  <link rel="preload" as="video" href="./static/new_assets/coco_running_in_scene_hq2x.mp4" type="video/mp4">
 </head>
 <body>
 
@@ -86,7 +80,7 @@
       UrbanVerse is a scalable system that converts real-world urban scenes from city-tour videos into physics-aware, interactive simulation environments. By extracting scene layouts from uncalibrated RGB footage and populating them with assets from the UrbanVerse-100K database, it enables robot learning in faithful digital replicas of real streets&mdash;with zero-shot sim-to-real transfer.
     </div>
     <div class="overview-video-col">
-      <video autoplay loop muted playsinline src="./static/new_assets/coco_running_in_scene_hq2x.mp4" style="width:100%; height:100%; object-fit:cover; border-radius:10px;"></video>
+      <video autoplay loop muted playsinline preload="auto" fetchpriority="high" src="./static/new_assets/coco_running_in_scene_hq2x.mp4" style="width:100%; height:100%; object-fit:cover; border-radius:10px;"></video>
     </div>
   </div>
 
@@ -1127,6 +1121,13 @@ document.addEventListener('selectstart', function(e) {
 document.addEventListener('dragover', function(e) { e.preventDefault(); });
 document.addEventListener('drop', function(e) { e.preventDefault(); });
 </script>
+
+<link rel="prefetch" href="./mobile_manipulator.html" as="document">
+<link rel="prefetch" href="./realworld_sidebyside.html" as="document">
+<link rel="prefetch" href="./scene_with_dynas.html" as="document">
+<link rel="prefetch" href="./urbanverse_1k.html" as="document">
+<link rel="prefetch" href="./urbanverse_scenes.html" as="document">
+<link rel="prefetch" href="./vr_interaction.html" as="document">
 
 </body>
 </html>
