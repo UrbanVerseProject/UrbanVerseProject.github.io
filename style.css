@@ -33,6 +33,15 @@ body {
   }
 }
 
+.toc-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 14px;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
 .toc h3 {
   font-family: 'Playfair Display', serif;
   font-size: 18px;
